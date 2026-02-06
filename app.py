@@ -127,9 +127,11 @@ def index():
     return render_template('index.html', articles=articles)
 
 @app.route('/about')
+@app.route('/about/')
 def about():
     return render_template('about.html')
 @app.route('/search')
+@app.route('/search/')
 def search():
     query = request.args.get('q', '')
     if not query:
