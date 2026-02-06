@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تکامل دموکراسی - پیشتاز</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#dc2626', // Red-600
+                        secondary: '#991b1b', // Red-800
+                    },
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                fontFamily: 'Vazirmatn, sans-serif',
+                                'h1, h2, h3, h4': {
+                                    fontFamily: 'Vazirmatn, sans-serif',
+                                    fontWeight: '700',
+                                },
+                            },
+                        },
+                    }),
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @counter-style persian-counter {
+            system: numeric;
+            symbols: '۰' '۱' '۲' '۳' '۴' '۵' '۶' '۷' '۸' '۹';
+            suffix: '. ';
+        }
+
+        body { 
+            font-family: 'Vazirmatn', sans-serif; 
+            background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('/Pishtaz/home.JPG');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .prose ol {
+            list-style-type: persian; /* Fallback */
+            list-style: persian-counter;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav id="main-nav" class="bg-primary shadow-lg sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/Pishtaz/" class="text-white text-2xl font-bold tracking-tight hover:text-gray-100 transition">
+                        پیشتاز
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="mr-10 flex items-baseline space-x-4 space-x-reverse">
+                        
+                        <a href="/Pishtaz/%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF/" 
+                           class="text-white hover:bg-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium transition
+                                  ">
+                            اقتصاد
+                        </a>
+                        
+                        <a href="/Pishtaz/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/" 
+                           class="text-white hover:bg-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium transition
+                                  ">
+                            ایران
+                        </a>
+                        
+                        <a href="/Pishtaz/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/" 
+                           class="text-white hover:bg-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium transition
+                                  ">
+                            تاریخ
+                        </a>
+                        
+                        <a href="/Pishtaz/%D8%B3%DB%8C%D8%A7%D8%B3%D8%AA/" 
+                           class="text-white hover:bg-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium transition
+                                  bg-secondary">
+                            سیاست
+                        </a>
+                        
+                        <a href="/Pishtaz/%D9%81%D9%84%D8%B3%D9%81%D9%87/" 
+                           class="text-white hover:bg-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium transition
+                                  ">
+                            فلسفه
+                        </a>
+                        
+                        <a href="/Pishtaz/%DA%A9%D8%B4%D9%88%D8%B1%D9%87%D8%A7%DB%8C%20%D8%B3%D9%88%D8%B3%DB%8C%D8%A7%D9%84%DB%8C%D8%B3%D8%AA%DB%8C/" 
+                           class="text-white hover:bg-secondary hover:text-white px-3 py-2 rounded-md text-sm font-medium transition
+                                  ">
+                            کشورهای سوسیالیستی
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Search Bar (Desktop) -->
+                <div class="hidden md:flex items-center">
+                    <form action="/Pishtaz/search" method="get" class="relative">
+                        <input type="text" name="q" placeholder="جستجو..." class="bg-red-800 text-white placeholder-red-300 rounded-full px-4 py-1 pr-10 focus:outline-none focus:ring-2 focus:ring-white focus:bg-red-900 transition w-64 text-sm">
+                        <button type="submit" class="absolute right-0 top-0 mt-1.5 mr-3 text-red-300 hover:text-white">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="-ml-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="bg-secondary inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                        <span class="sr-only">باز کردن منو</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <form action="/Pishtaz/search" method="get" class="mb-4 px-3">
+                    <div class="relative">
+                        <input type="text" name="q" placeholder="جستجو..." class="w-full bg-red-800 text-white placeholder-red-300 rounded-md px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-white">
+                        <button type="submit" class="absolute right-0 top-0 mt-2.5 mr-3 text-red-300 hover:text-white">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                
+                <a href="/Pishtaz/%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF/" class="text-white hover:bg-secondary block px-3 py-2 rounded-md text-base font-medium">
+                    اقتصاد
+                </a>
+                
+                <a href="/Pishtaz/%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/" class="text-white hover:bg-secondary block px-3 py-2 rounded-md text-base font-medium">
+                    ایران
+                </a>
+                
+                <a href="/Pishtaz/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/" class="text-white hover:bg-secondary block px-3 py-2 rounded-md text-base font-medium">
+                    تاریخ
+                </a>
+                
+                <a href="/Pishtaz/%D8%B3%DB%8C%D8%A7%D8%B3%D8%AA/" class="text-white hover:bg-secondary block px-3 py-2 rounded-md text-base font-medium">
+                    سیاست
+                </a>
+                
+                <a href="/Pishtaz/%D9%81%D9%84%D8%B3%D9%81%D9%87/" class="text-white hover:bg-secondary block px-3 py-2 rounded-md text-base font-medium">
+                    فلسفه
+                </a>
+                
+                <a href="/Pishtaz/%DA%A9%D8%B4%D9%88%D8%B1%D9%87%D8%A7%DB%8C%20%D8%B3%D9%88%D8%B3%DB%8C%D8%A7%D9%84%DB%8C%D8%B3%D8%AA%DB%8C/" class="text-white hover:bg-secondary block px-3 py-2 rounded-md text-base font-medium">
+                    کشورهای سوسیالیستی
+                </a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 w-full">
+        
+<div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="px-8 py-8">
+        <div class="mb-6 border-b border-gray-200 pb-6">
+            <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-500 mb-3">
+                <a href="/Pishtaz/%D8%B3%DB%8C%D8%A7%D8%B3%D8%AA/" class="text-primary hover:text-secondary font-medium">
+                    سیاست
+                </a>
+                <span>&bull;</span>
+                <span>1402-07-18</span>
+                <span>&bull;</span>
+                <span>نویسنده: مریم سیاسی‌پور</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+                تکامل دموکراسی
+            </h1>
+            
+        </div>
+        
+        <article class="prose prose-red prose-lg max-w-none">
+            <h1>تکامل دموکراسی</h1>
+<p>دموکراسی، که به معنای "حکومت مردم" است، در طول تاریخ اشکال مختلفی به خود گرفته است.</p>
+<h2>ریشه‌های باستانی</h2>
+<p>این واژه از کلمه یونانی <em>demokratia</em> گرفته شده است که از <em>demos</em> ("مردم") و <em>kratos</em> ("حکومت") در قرن پنجم پیش از میلاد برای توصیف سیستم‌های سیاسی موجود در برخی دولت‌شهرهای یونان، به‌ویژه آتن، ابداع شد.</p>
+<h2>دموکراسی مدرن</h2>
+<p>دموکراسی مدرن با ویژگی‌های زیر مشخص می‌شود:
+1.  انتخابات آزاد و عادلانه.
+2.  مشارکت فعال مردم.
+3.  حمایت از حقوق بشر.
+4.  حاکمیت قانون.</p>
+        </article>
+    </div>
+</div>
+
+<div class="max-w-4xl mx-auto mt-8 px-4">
+    <a href="/Pishtaz/%D8%B3%DB%8C%D8%A7%D8%B3%D8%AA/" class="text-primary hover:text-secondary font-medium flex items-center">
+        <svg class="w-4 h-4 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        بازگشت به سیاست
+    </a>
+</div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col items-center gap-4">
+                <div class="flex items-center gap-6">
+                    <a href="https://t.me/pishtaz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-gray-300 hover:text-white">
+                        <svg class="w-6 h-6 mr-2 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9.828 12.89l-.384 5.084c.548 0 .786-.235 1.07-.515l2.568-2.457 5.326 3.9c.976.54 1.672.257 1.94-.905l3.517-16.47.001-.001c.312-1.455-.525-2.022-1.474-1.67L1.2 9.232c-1.422.553-1.403 1.346-.243 1.705l5.652 1.766 13.124-8.285c.617-.376 1.183-.168.718.208z"/>
+                        </svg>
+                        تلگرام
+                    </a>
+                    <a href="https://instagram.com/pishtaz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-gray-300 hover:text-white">
+                        <svg class="w-6 h-6 mr-2 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 3a5 5 0 100 10 5 5 0 000-10zm6-1a1 1 0 110 2 1 1 0 010-2z"/>
+                        </svg>
+                        اینستاگرام
+                    </a>
+                    <a href="https://x.com/pishtaz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-gray-300 hover:text-white">
+                        <svg class="w-6 h-6 mr-2 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 3h5.5l4.2 6.1L18.5 3H22l-7.3 9.4L21 21h-5.5l-4.6-6.7L8 21H4l7.5-9.6z"/>
+                        </svg>
+                        X
+                    </a>
+                </div>
+                <p class="text-sm text-gray-400">&copy;  پیشتاز. تمامی حقوق محفوظ است.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toPersianNum(node) {
+            if (node.nodeType === 3) { // Text node
+                node.data = node.data.replace(/\d/g, x => ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'][x]);
+            } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') {
+                for (let i = 0; i < node.childNodes.length; i++) {
+                    toPersianNum(node.childNodes[i]);
+                }
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            toPersianNum(document.body);
+            document.title = document.title.replace(/\d/g, x => ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'][x]);
+
+            const nav = document.getElementById('main-nav');
+            function applyGlass() {
+                nav.classList.remove('bg-primary', 'shadow-lg', 'border-b', 'border-white/20', 'backdrop-blur-xl');
+                nav.classList.add('bg-primary/60', 'backdrop-filter', 'backdrop-saturate-150', 'ring-1', 'ring-white/20', 'shadow-md');
+            }
+            function applySolid() {
+                nav.classList.add('bg-primary', 'shadow-lg');
+                nav.classList.remove('bg-primary/60', 'backdrop-filter', 'backdrop-saturate-150', 'ring-1', 'ring-white/20', 'shadow-md');
+            }
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            function isMenuOpen() {
+                return mobileMenu && !mobileMenu.classList.contains('hidden');
+            }
+            function updateByScroll() {
+                if (isMenuOpen()) {
+                    applySolid();
+                    return;
+                }
+                if (window.scrollY > 10) {
+                    applyGlass();
+                } else {
+                    applySolid();
+                }
+            }
+            window.addEventListener('scroll', updateByScroll);
+            nav.addEventListener('mouseenter', applySolid);
+            nav.addEventListener('mouseleave', updateByScroll);
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => setTimeout(updateByScroll, 0));
+            }
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    updateByScroll();
+                }
+            });
+            updateByScroll();
+        });
+    </script>
+</body>
+</html>
