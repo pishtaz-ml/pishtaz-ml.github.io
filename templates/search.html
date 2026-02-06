@@ -13,44 +13,8 @@
         </p>
     </div>
 
-    {% if articles %}
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {% for article in articles %}
-        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="p-6">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium text-primary bg-red-50 px-2 py-1 rounded">
-                        {{ article.category }}
-                    </span>
-                    <span class="text-sm text-gray-500">
-                        {{ article.date }}
-                    </span>
-                </div>
-                <a href="{{ path_for('article_page', category=article.category, slug=article.slug) }}/" class="block mt-2">
-                    <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
-                        {{ article.title }}
-                    </h2>
-                    <div class="mt-2 text-xs text-gray-500">
-                        <span class="font-medium">نویسنده:</span> {{ article.author }}
-                    </div>
-                    <p class="mt-3 text-gray-500 line-clamp-3">
-                        {{ article.summary }}
-                    </p>
-                </a>
-                <div class="mt-4">
-                    <a href="{{ path_for('article_page', category=article.category, slug=article.slug) }}/" class="text-primary font-medium hover:text-secondary flex items-center group">
-                        مطالعه بیشتر
-                        <svg class="w-4 h-4 mr-1 transform group-hover:-translate-x-1 transition-transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    {% else %}
-    <div class="text-center py-12 bg-white rounded-lg shadow-sm">
+    <div id="results" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
+    <div id="no-results" class="text-center py-12 bg-white rounded-lg shadow-sm hidden">
         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
@@ -62,6 +26,74 @@
             </a>
         </div>
     </div>
-    {% endif %}
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function qp(name) {
+        const m = new RegExp('[?&]' + name + '=([^&]*)').exec(location.search);
+        return m && decodeURIComponent(m[1].replace(/\+/g, ' ')) || '';
+    }
+    async function load() {
+        const q = qp('q').trim().toLowerCase();
+        const results = document.getElementById('results');
+        const empty = document.getElementById('no-results');
+        if (!q) {
+            empty.classList.remove('hidden');
+            return;
+        }
+        const res = await fetch('{{ base_url }}/index.json');
+        const index = await res.json();
+        const filtered = index.filter(a =>
+            (a.title || '').toLowerCase().includes(q) ||
+            (a.subtitle || '').toLowerCase().includes(q) ||
+            (a.summary || '').toLowerCase().includes(q) ||
+            (a.author || '').toLowerCase().includes(q) ||
+            (a.category || '').toLowerCase().includes(q)
+        );
+        if (!filtered.length) {
+            empty.classList.remove('hidden');
+            return;
+        }
+        const frag = document.createDocumentFragment();
+        for (const a of filtered) {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100';
+            card.innerHTML = `
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-primary bg-red-50 px-2 py-1 rounded">
+                            ${a.category}
+                        </span>
+                        <span class="text-sm text-gray-500">
+                            ${a.date || ''}
+                        </span>
+                    </div>
+                    <a href="{{ base_url }}${a.url}" class="block mt-2">
+                        <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
+                            ${a.title}
+                        </h2>
+                        <div class="mt-2 text-xs text-gray-500">
+                            <span class="font-medium">نویسنده:</span> ${a.author || 'ناشناس'}
+                        </div>
+                        <p class="mt-3 text-gray-500 line-clamp-3">
+                            ${a.summary || ''}
+                        </p>
+                    </a>
+                    <div class="mt-4">
+                        <a href="{{ base_url }}${a.url}" class="text-primary font-medium hover:text-secondary flex items-center group">
+                            مطالعه بیشتر
+                            <svg class="w-4 h-4 mr-1 transform group-hover:-translate-x-1 transition-transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>`;
+            frag.appendChild(card);
+        }
+        results.appendChild(frag);
+    }
+    document.addEventListener('DOMContentLoaded', load);
+</script>
 {% endblock %}

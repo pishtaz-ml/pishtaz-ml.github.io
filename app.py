@@ -3,6 +3,7 @@ import re
 import markdown
 import bleach
 from flask import Flask, render_template, abort, request, send_file, url_for
+from flask import jsonify
 from datetime import datetime
 
 app = Flask(__name__)
@@ -172,6 +173,7 @@ ALLOWED_ATTRS = {
 ALLOWED_PROTOCOLS = ['http', 'https', 'mailto']
 
 @app.route('/<category>/<slug>')
+@app.route('/<category>/<slug>/')
 def article_page(category, slug):
     filepath = _safe_article_path(category, slug)
     if not os.path.exists(filepath):
@@ -202,6 +204,22 @@ def article_page(category, slug):
                            author=author,
                            subtitle=subtitle,
                            category=category)
+
+@app.route('/index.json')
+def index_json():
+    items = []
+    for a in get_all_articles():
+        items.append({
+            "title": a.get("title", ""),
+            "subtitle": a.get("subtitle", ""),
+            "summary": a.get("summary", ""),
+            "author": a.get("author", ""),
+            "date": a.get("date", ""),
+            "category": a["category"],
+            "slug": a["slug"],
+            "url": f"/{a['category']}/{a['slug']}/"
+        })
+    return jsonify(items)
 
 @app.after_request
 def add_security_headers(response):
