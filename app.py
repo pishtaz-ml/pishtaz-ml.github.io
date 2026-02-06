@@ -217,7 +217,7 @@ def add_security_headers(response):
 
 @app.route('/home.JPG')
 def serve_home_image():
-    path = os.path.abspath('/Users/faridounet/Research/Pishtaz/home.JPG')
+    path = os.path.join(app.root_path, 'home.JPG')
     if not os.path.exists(path):
         abort(404)
     return send_file(path, mimetype='image/jpeg')
