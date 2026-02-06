@@ -1,0 +1,38 @@
+# Python / Flask
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDE / Editor
+.idea/
+.vscode/
+.trae/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Byte-compiled / cache
+.pytest_cache/
+
+# Node (if any future JS tooling)
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Coverage
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
