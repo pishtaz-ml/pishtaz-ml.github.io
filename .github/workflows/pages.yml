@@ -35,9 +35,7 @@ jobs:
         env:
           BASE_PATH: "/${{ github.event.repository.name }}"
         run: |
-          python freeze.py
-          mkdir -p docs
-          cp -r build/* docs/
+          python freeze_static.py
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
