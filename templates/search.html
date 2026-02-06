@@ -43,8 +43,24 @@
             empty.classList.remove('hidden');
             return;
         }
-        const res = await fetch('{{ base_url }}/index.json');
-        const index = await res.json();
+        let index = [];
+        try {
+            const res1 = await fetch('{{ base_url }}/index.json', { cache: 'no-store' });
+            index = await res1.json();
+        } catch (e1) {
+            try {
+                const res2 = await fetch('/index.json', { cache: 'no-store' });
+                index = await res2.json();
+            } catch (e2) {
+                try {
+                    const res3 = await fetch('index.json', { cache: 'no-store' });
+                    index = await res3.json();
+                } catch (e3) {
+                    empty.classList.remove('hidden');
+                    return;
+                }
+            }
+        }
         const filtered = index.filter(a =>
             (a.title || '').toLowerCase().includes(q) ||
             (a.subtitle || '').toLowerCase().includes(q) ||

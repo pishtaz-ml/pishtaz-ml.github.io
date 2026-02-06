@@ -21,6 +21,8 @@ def main():
     if os.path.exists("docs"):
         shutil.rmtree("docs")
     os.makedirs("docs", exist_ok=True)
+    with open(os.path.join("docs", ".nojekyll"), "w", encoding="utf-8") as f:
+        f.write("")
 
     with app.test_client() as client:
         save_html("/", client.get("/").data.decode("utf-8"))
