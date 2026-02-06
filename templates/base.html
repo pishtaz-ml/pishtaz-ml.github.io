@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}پیشتاز{% endblock %}</title>
-    <base href="{{ base_path }}/">
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <script>
@@ -50,7 +49,7 @@
 
         body { 
             font-family: 'Vazirmatn', sans-serif; 
-            background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('{{ base_path }}/home.JPG');
+            background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('{{ static_prefix }}home.JPG');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;

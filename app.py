@@ -111,8 +111,20 @@ def search_articles(query):
 def inject_categories():
     """Inject categories into all templates."""
     def path_for(endpoint, **values):
-        return f"{BASE_PATH}{url_for(endpoint, **values)}"
-    return dict(categories=get_categories(), base_path=BASE_PATH, path_for=path_for, now_year=datetime.now().year)
+        p = url_for(endpoint, **values)
+        if p != '/' and not p.endswith('/'):
+            p = p + '/'
+        segments = [s for s in request.path.strip('/').split('/') if s]
+        depth = len(segments)
+        prefix = '../' * depth
+        return f"{prefix}{p.lstrip('/')}"
+    segments = [s for s in request.path.strip('/').split('/') if s]
+    depth = len(segments)
+    static_prefix = '../' * depth
+    return dict(categories=get_categories(),
+                path_for=path_for,
+                static_prefix=static_prefix,
+                now_year=datetime.now().year)
 
 @app.route('/')
 def index():
