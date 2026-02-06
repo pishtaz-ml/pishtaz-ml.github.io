@@ -33,7 +33,7 @@ jobs:
 
       - name: Freeze site
         env:
-          BASE_PATH: "/${{ github.event.repository.name }}"
+          BASE_URL: "https://pishtaz-ml.github.io"
         run: |
           python freeze_static.py
 
