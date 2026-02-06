@@ -2,11 +2,12 @@ import os
 import re
 import markdown
 import bleach
-from flask import Flask, render_template, abort, request, send_file
+from flask import Flask, render_template, abort, request, send_file, url_for
 from datetime import datetime
 
 app = Flask(__name__)
 ARTICLES_DIR = 'articles'
+BASE_PATH = os.environ.get('BASE_PATH', '')
 
 def get_categories():
     """Returns a list of category names based on subdirectories in ARTICLES_DIR."""
@@ -109,7 +110,9 @@ def search_articles(query):
 @app.context_processor
 def inject_categories():
     """Inject categories into all templates."""
-    return dict(categories=get_categories())
+    def path_for(endpoint, **values):
+        return f"{BASE_PATH}{url_for(endpoint, **values)}"
+    return dict(categories=get_categories(), base_path=BASE_PATH, path_for=path_for)
 
 @app.route('/')
 def index():

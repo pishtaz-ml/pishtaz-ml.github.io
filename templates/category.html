@@ -23,7 +23,7 @@
                         {{ article.date }}
                     </span>
                 </div>
-                <a href="/{{ article.category }}/{{ article.slug }}" class="block mt-2">
+                <a href="{{ path_for('article_page', category=article.category, slug=article.slug) }}" class="block mt-2">
                     <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
                         {{ article.title }}
                     </h2>
