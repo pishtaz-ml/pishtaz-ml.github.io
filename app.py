@@ -7,7 +7,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 ARTICLES_DIR = 'articles'
-BASE_PATH = os.environ.get('BASE_PATH', '')
+BASE_URL = os.environ.get('BASE_URL', 'https://pishtaz-ml.github.io')
 
 def get_categories():
     """Returns a list of category names based on subdirectories in ARTICLES_DIR."""
@@ -114,16 +114,10 @@ def inject_categories():
         p = url_for(endpoint, **values)
         if p != '/' and not p.endswith('/'):
             p = p + '/'
-        segments = [s for s in request.path.strip('/').split('/') if s]
-        depth = len(segments)
-        prefix = '../' * depth
-        return f"{prefix}{p.lstrip('/')}"
-    segments = [s for s in request.path.strip('/').split('/') if s]
-    depth = len(segments)
-    static_prefix = '../' * depth
+        return f"{BASE_URL}{p}"
     return dict(categories=get_categories(),
                 path_for=path_for,
-                static_prefix=static_prefix,
+                base_url=BASE_URL,
                 now_year=datetime.now().year)
 
 @app.route('/')
