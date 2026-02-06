@@ -112,7 +112,7 @@ def inject_categories():
     """Inject categories into all templates."""
     def path_for(endpoint, **values):
         return f"{BASE_PATH}{url_for(endpoint, **values)}"
-    return dict(categories=get_categories(), base_path=BASE_PATH, path_for=path_for)
+    return dict(categories=get_categories(), base_path=BASE_PATH, path_for=path_for, now_year=datetime.now().year)
 
 @app.route('/')
 def index():
