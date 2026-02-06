@@ -43,21 +43,30 @@
             empty.classList.remove('hidden');
             return;
         }
+        const root = location.pathname.endsWith('/') 
+            ? location.pathname.replace(/[^/]+\/$/, '') 
+            : location.pathname.replace(/[^/]+$/, '');
         let index = [];
+        async function tryFetch(url) {
+            const res = await fetch(url, { cache: 'no-store' });
+            if (!res.ok) throw new Error('fetch failed');
+            return res.json();
+        }
         try {
-            const res1 = await fetch('{{ base_url }}/index.json', { cache: 'no-store' });
-            index = await res1.json();
-        } catch (e1) {
+            index = await tryFetch('{{ base_url }}/index.json');
+        } catch (_) {
             try {
-                const res2 = await fetch('/index.json', { cache: 'no-store' });
-                index = await res2.json();
-            } catch (e2) {
+                index = await tryFetch('/index.json');
+            } catch (_) {
                 try {
-                    const res3 = await fetch('index.json', { cache: 'no-store' });
-                    index = await res3.json();
-                } catch (e3) {
-                    empty.classList.remove('hidden');
-                    return;
+                    index = await tryFetch(root + (root.endsWith('/') ? '' : '/') + 'index.json');
+                } catch (_) {
+                    try {
+                        index = await tryFetch('index.json');
+                    } catch (_) {
+                        empty.classList.remove('hidden');
+                        return;
+                    }
                 }
             }
         }
