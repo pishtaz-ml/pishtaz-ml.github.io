@@ -24,16 +24,16 @@
     "featured": false
   },
   {
-    "title": "تکامل دموکراسی",
+    "title": "پیشتاز برای چه؟",
     "subtitle": "",
-    "summary": "ردیابی ریشه‌های حکمرانی دموکراتیک از آتن تا دولت‌های مدرن.",
-    "author": "مریم سیاسی‌پور",
-    "date": "1402-07-18",
-    "category": "سیاست",
-    "slug": "democracy-evolution",
-    "url": "/سیاست/democracy-evolution/",
-    "cover_url": "",
-    "featured": false
+    "summary": "مانیفست پیشتاز",
+    "author": "پیشتاز",
+    "date": "1404-11-14",
+    "category": "سیاست و جامعه",
+    "slug": "pishtaz",
+    "url": "/سیاست و جامعه/pishtaz/",
+    "cover_url": "/covers/سیاست و جامعه/home.JPG",
+    "featured": true
   },
   {
     "title": "چرا نقد کارل پوپر از دیالکتیک مردود است",
