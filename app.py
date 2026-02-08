@@ -153,11 +153,10 @@ def inject_categories():
 
 @app.route('/')
 def index():
-    articles = get_all_articles()
-    featured_articles = [a for a in articles if a.get('featured')]
-    if len(featured_articles) > 6:
-        featured_articles = featured_articles[:6]
-    return render_template('index.html', articles=articles, featured_articles=featured_articles)
+    all_articles = get_all_articles()
+    featured_articles = [a for a in all_articles if a.get('featured')][:6]
+    latest_articles = all_articles[:12]
+    return render_template('index.html', articles=latest_articles, featured_articles=featured_articles)
 
 @app.route('/about')
 @app.route('/about/')
