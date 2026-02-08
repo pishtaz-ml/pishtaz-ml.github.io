@@ -300,6 +300,13 @@ def serve_home_image():
         abort(404)
     return send_file(path, mimetype='image/jpeg')
 
+@app.route('/logo.png')
+def serve_logo():
+    path = os.path.join(app.root_path, 'logo.png')
+    if not os.path.exists(path):
+        abort(404)
+    return send_file(path, mimetype='image/png')
+
 @app.route('/covers/<category>/<filename>')
 def serve_cover_image(category, filename):
     if category not in get_categories():

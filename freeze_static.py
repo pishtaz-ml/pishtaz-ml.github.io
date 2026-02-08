@@ -85,6 +85,7 @@ def main():
         json.dump(index, jf, ensure_ascii=False, indent=2)
 
     shutil.copyfile("home.JPG", os.path.join("docs", "home.JPG"))
+    shutil.copyfile("logo.png", os.path.join("docs", "logo.png"))
 
 
 if __name__ == "__main__":
