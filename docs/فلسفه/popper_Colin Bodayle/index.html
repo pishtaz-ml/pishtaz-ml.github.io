@@ -57,13 +57,56 @@
 
         body { 
             font-family: 'Vazirmatn', sans-serif; 
-            background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('https://pishtaz-ml.github.io/home.JPG');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
         }
-        
+    </style>
+
+    
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        background-image: none !important;
+    }
+    
+    /* TOC Styling */
+    .toc-list ul {
+        list-style-type: none;
+        padding-right: 1.25rem;
+        border-right: 1px solid #e5e7eb;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .toc-list > ul {
+        padding-right: 0;
+        border-right: none;
+    }
+    .toc-list li {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+    }
+    .toc-list a {
+        text-decoration: none;
+        color: #4b5563;
+        display: block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.375rem;
+        transition: all 0.2s;
+        font-size: 0.925rem;
+    }
+    .toc-list a:hover {
+        background-color: #fee2e2;
+        color: #dc2626;
+    }
+    .toc-list a.active {
+        color: #dc2626;
+        font-weight: 600;
+        background-color: #fee2e2;
+    }
+</style>
+
+
+    <style>
         .prose ol {
             list-style-type: persian; /* Fallback */
             list-style: persian-counter;
@@ -182,40 +225,44 @@
     <!-- Main Content -->
     <main class="flex-grow max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 w-full">
         
-<div class="max-w-4xl mx-auto bg-paper shadow-lg rounded-lg overflow-hidden">
-    <div class="px-8 py-8">
-        <div class="mb-6 border-b border-gray-200 pb-6">
-            <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-500 mb-3">
-                <a href="https://pishtaz-ml.github.io/%D9%81%D9%84%D8%B3%D9%81%D9%87/" class="text-primary hover:text-secondary font-medium">
-                    فلسفه
-                </a>
-                <span>&bull;</span>
-                <span>1404-11-14</span>
-                <span>&bull;</span>
-                <span>نویسنده: (Colin Bodayle) کالین بادِیل</span>
-            </div>
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
-                چرا نقد کارل پوپر از دیالکتیک مردود است
-            </h1>
-            
-            <h2 class="text-xl sm:text-2xl text-gray-600 mt-2 font-medium">
-                دیالکتیک و قانون عدم تناقض
-            </h2>
-            
-        </div>
-        
-        <article class="prose prose-red prose-lg max-w-none">
-            <hr>
+<div class="flex flex-col lg:flex-row gap-8">
+    <!-- Main Article Column (Right side on RTL) -->
+    <div class="flex-grow lg:w-3/4">
+            <div class="bg-paper shadow-lg rounded-lg overflow-hidden">
+                <div class="px-8 py-8">
+                    <div class="mb-6 border-b border-gray-200 pb-6">
+                        <div class="flex items-center space-x-2 space-x-reverse text-sm text-gray-500 mb-3">
+                            <a href="https://pishtaz-ml.github.io/%D9%81%D9%84%D8%B3%D9%81%D9%87/" class="text-primary hover:text-secondary font-medium">
+                                فلسفه
+                            </a>
+                            <span>&bull;</span>
+                            <span>1404-11-14</span>
+                            <span>&bull;</span>
+                            <span>نویسنده: (Colin Bodayle) کالین بادِیل</span>
+                        </div>
+                        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+                            چرا نقد کارل پوپر از دیالکتیک مردود است
+                        </h1>
+                        
+                        <h2 class="text-xl sm:text-2xl text-gray-600 mt-2 font-medium">
+                            دیالکتیک و قانون عدم تناقض
+                        </h2>
+                        
+                    </div>
+                    
+                    <article class="prose prose-red prose-lg max-w-none">
+                        <hr>
 
-<h3>توضیحات</h3>
-<p>کالین بادِیل یک مارکسیست آمریکایی است که در دانشگاه ویلانورا در پنسیلوانیا فلسفه تدریس میکند. او در شبکه‌ی سابستک یک <a href="https://colinbodayle.substack.com/">وبلاگ فلسفی</a> دارد. ۵ فوریه ۲۰۲۶، او مطلبی در رد نظریات پوپر درباره‌ی دیالکتیک نوشت که تصمیم گرفتیم ترجمه کنیم. کارل پوپر، فیلسوف لیبرال اتریشی-بریتانیایی، از چهره‌های شاخص فلسفه‌ی تحلیلی است. نقد او بر مارکسیسم و دیالکتیک هگلی-مارکسی دائما در محافل مختلف تکرار میشود. در این مقاله، نویسنده بعد از تشریح نقد او، نشان میدهد که چرا نقد او اغراض‌آمیز و مردود است.</p>
-<h2></h2>
+<h3 id="_1">توضیحات</h3>
+<p>کالین بادِیل یک مارکسیست آمریکایی است که در دانشگاه ویلانورا در پنسیلوانیا فلسفه تدریس میکند. او در شبکه‌ی سابستک یک <a href="https://colinbodayle.substack.com/">وبلاگ فلسفی</a> دارد. ۵ فوریه ۲۰۲۶، او مطلبی در رد نظریات پوپر درباره‌ی دیالکتیک نوشت که تصمیم گرفتیم ترجمه کنیم. کارل پوپر، فیلسوف لیبرال اتریشی-بریتانیایی، از چهره‌های شاخص فلسفه‌ی تحلیلی است. نقد او بر مارکسیسم و دیالکتیک هگلی-مارکسی دائما در محافل مختلف تکرار میشود. در این مقاله، نویسنده بعد از تشریح نقد او، نشان میدهد که چرا نقد او اغراض‌آمیز و مردود است.
+متن اصلی را میتوانید <a href="https://colinbodayle.substack.com/p/why-karl-poppers-critique-of-dialectics#footnote-anchor-6-186994773">اینجا</a> مطالعه کنید.</p>
+<h2 id="_2"></h2>
 <hr>
 
 <p>کارل پوپر به دو دلیل شناخته شده است: دیدگاهش مبنی بر اینکه نظریه‌های علمی معتبر باید «ابطال‌پذیر» باشند، و نظریه‌اش درباره «جامعه باز». کارهای او در فلسفه علم و مشارکتش در تلاش‌های جنگ سردی بریتانیا از طریق متون ضدکمونیستی مانند <em>جامعه باز و دشمنان آن</em>، موجب تحسین گسترده و شهرت عمومی او شد. فیلسوف اتریشی‌تبار که یک‌بار هگل را پروپاگاندیست دولتی و خادم سلطنت خوانده بود، در سال ۱۹۶۵ به‌پاس خدماتش به تاج‌وتخت [بریتانیا] از ملکه الیزابت لقب شوالیه گرفت.</p>
 <p>پژوهشگران متخصص فلسفه‌های افلاطون، هگل و مارکس تلاش‌های زیادی کرده‌اند تا این اندیشمندان بزرگ را از متون اغراض‌آمیز پوپر نجات دهند. با این حال، گاهی این تلاش‌ها بیش از حد اصلاح‌طلبانه بوده و زمین زیادی به فیلسوف مورد علاقه دربار سلطنتی واگذار کرده‌اند، به‌ویژه در مورد حمله پوپر به روش دیالکتیکی. پوپر استدلال می‌کند که دیالکتیک قانون عدم تناقض را نقض می‌کند. از دیدگاه پوپر، هر نظامی که قانون تناقض را نقض کند، بی‌معنی شده و نمی‌تواند میان صدق و کذب تمایز قائل شود. بسیاری، با رد پیشفرض پوپر، از دیالکتیک هگل و مارکس دفاع کرده‌اند. با این استدلال که نه هگل و نه مارکس در واقع قانون عدم تناقض را رد نکرده‌اند. مشکل این رویکرد این است که شواهد متونی فراوانی موجود است که نشان می‌دهند هگل در واقع قانون عدم تناقض را رد می‌کند.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> مارکس و انگلس نیز به‌وضوح در این مسئله پیرو هگل هستند.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
 <p>به‌جای بازنویسی هگل یا مارکس برای سازش با پوپر، استدلال می‌کنم که بهترین راه دفاع از دیالکتیک در برابر فیلسوف اتریشی مورد علاقه دربار سلطنتی، رد مستقیم استدلال‌های پوپر است. در حقیقت، هم هگل و هم مارکس قانون عدم تناقض را رد می‌کنند، اما پوپر نتوانسته نشان دهد که این امر مشکل جدی‌ای برای شیوه‌های استدلال دیالکتیکی ایجاد می‌کند.</p>
-<h2>نقد پوپر از دیالکتیک</h2>
+<h2 id="_3">نقد پوپر از دیالکتیک</h2>
 <p>شوالیه‌ی صلیبی ضدکمونیست تاج‌وتخت<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>، کمپین خود علیه دیالکتیک را در مقاله‌ای با عنوان «دیالکتیک چیست؟» که در سال ۱۹۴۰ در مجله مایند منتشر شد، آغاز کرد. نسخه خلاصه‌شده‌ای از همین نقد بعداً در «جامعه باز و دشمنان آن» ظاهر شد. پوپر استدلال می‌کند که اگر نظام فلسفی‌ای امکان وجود <em>تناقضات حقیقی</em> را بپذیرد، این تناقض‌ها را می‌توان برای توجیه هر ادعایی به‌کار برد. در اینجا پوپر به اصل منطقی اِکس فالسو کوودلیبت (ex falso quodlibet) که به «اصل انفجار» معروف است، استناد می‌کند. پوپر می‌نویسد:</p>
 <blockquote>
 <p>از دو پیشفرض متناقض، می‌توانیم به‌صورت منطقی هر چیزی و همچنین نقیض آن را استنتاج کنیم. بنابراین چنین نظریه‌ای که دارای تناقض است، هیچ چیزی را منتقل نمی‌کند. نظریه‌ای که شامل تناقض باشد کاملاً بی‌فایده است، زیرا هیچ‌گونه اطلاعاتی منتقل نمی‌کند… هرگاه تناقضی پذیرفته شود، تمام علم فرو خواهد ریخت.<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup></p>
@@ -244,7 +291,7 @@
 <li>نه-الف</li>
 <li>پس ب.</li>
 </ol>
-<h2>چرا استدلال پوپر مردود است</h2>
+<h2 id="_4">چرا استدلال پوپر مردود است</h2>
 <p>به گمانم خوانندگان شکاک احتمالاً احساس می‌کنند این استدلال نوعی ترفند منطقی یا سوفسطایی است. در واقع، از نظر صوری هیچ اشتباهی در استدلالی که ارائه داده‌ام وجود ندارد. پس چرا احساس می‌کنیم که پوپر دارد به ما حقه می‌زند و با کلمات بازی میکند؟ گمان می‌کنم این استدلال به‌دلیل عدم وجود رابطه واقعی یا ضروری میان حرکت یک جسم و انفجار خورشید، برخلاف شهود به‌نظر می‌رسد. قوانین فیزیک به ما می‌گویند که الکترون‌ها می‌توانند هم‌زمان در دو مکان باشند<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>، اما تا آنجا که می‌دانم هیچ قانون فیزیکی پیشنهاد نمی‌کند که این امر باعث انفجار فوری خورشید شود. علاوه بر این، حتی اگر بتوانیم جهانی را تصور کنیم که در آن جسم متحرک هم اینجا است و هم اینجا نیست، چنین تصوری از حرکت همچنان با عدم انفجار خورشید هم‌امکان (compossible) است. بنابراین هر دلیلی داریم که فکر کنیم شوالیه‌ی سلطنتیِ ابطال‌پذیری، در حال انجام یک حقه بازی منطقی است.</p>
 <p>پوپر فرض می‌کند که مقدمه‌سازی فصلی و قیاس فصلی بر تمام اشکال استدلال اعمال می‌شوند. «این یک واقعیت است،» می‌گوید پوپر، «که همه افراد، و دیالکتیکتیسین‌ها (dialecticians) مستثنی نیستند، از این دو قاعده استنتاج استفاده می‌کنند (شاید به شکل ناخودآگاه).»<sup id="fnref:11"><a class="footnote-ref" href="#fn:11">8</a></sup> با این حال، خدمتکارِ علیاحضرت به‌طور آشکار از تاریخ منطق بی‌اطلاع است. کانت و هگل هیچ‌یک به این قواعد استنتاج پایبند نیستند. برای کانت، قضاوت فصلی تنها زمانی معتبر است که تمام گزینه‌های ممکن در یک کل را تعیین کند. برای مثال، قضاوت «این کتاب یا قرمز است یا سبز» تنها زمانی صادق است که غیرممکن باشد که کتاب آبی باشد. به همین دلیل، قیاس فصلی کانتی شکل دومی دارد که در منطق صوری قرن بیستمی مورد استفاده‌ی پوپر دنبال نمی‌شود، یعنی:</p>
 <ol>
@@ -263,10 +310,10 @@
 <p>نسخه هگل از قیاس فصلی در منطق کلاسیک قرن بیستم دنبال نمی‌شود. تنها زمانی دنبال می‌شود که فرض کنیم «ب، ج و د» یکدیگر را مستثنی می‌کنند، همان‌گونه که اگر با منطقی غنی از وجهیت (modally robust logic) کار می‌کردیم، یعنی منطقی که «ب، ج و د» را به‌عنوان تمام تعین‌های ممکن برای الف در نظر می‌گیرد.</p>
 <p>دوم، هگل استدلال می‌کند که گزاره‌هایی مانند «ذهن قرمز نیست»، «گل سرخ فیل نیست» یا «روح قلیایی نیست» «درست» اما «بی‌معنی و مضحک» هستند (علم منطق، ص ۶۴۲). این گزاره‌ها به این دلیل مضحک هستند که نقیض [یا نفی] خطاهای دسته‌بندی (category mistakes) هستند. هرچند درست است که «روح قلیایی نیست»، اما نمی‌توانیم از این گزاره نتیجه بگیریم که «روح یا اسید است یا خنثی» زیرا این قضاوت یک محمول ممکن را نفی نمی‌کند، بلکه محمولی غیرممکن را نفی می‌کند. گزاره‌هایی که محمول‌های غیرممکن را نفی می‌کنند، از دیدگاه هگل، به این دلیل بی‌معنی هستند که «اسید، قلیایی یا خنثی» محمول‌های ممکنی برای «روح» نیستند. هگل بدون شک مقدمه‌سازی فصلی را نیز شامل همین نوع پوچی می‌دانست.</p>
 <p>پوپر دیالکتیک را به این دلیل رد می‌کند که به‌اشتباه فرض می‌کند تمام اشکال تفکر مطابق با قراردادهای منطق ریاضی قرن بیستم عمل می‌کنند. او به‌صورت دوگماتیک و نابهنگامانه، تحولات اخیر در منطق را به اشکال پیشین تفکر تحمیل می‌کند و فرض می‌کند که تمام اندیشمندان در طول تاریخ، دانسته یا نادانسته، فرضیات فرا-منطقی (metalogical) یکسانی با فره‌گه و راسل داشته‌اند. از نظر تاریخی، نه ارسطو و نه کانت فرضیات پوپر درباره منطق را نمی‌پذیرفتند. اصولی مانند مقدمه‌سازی فصلی و اصل انفجار به این دلیل به‌نظر نوعی ترفند منطقی می‌رسند که هنگامی که فصل‌های دلبخواهانه‌ای مانند «یا امروز دوشنبه است یا من عموی میمون هستم» را معرفی می‌کنیم، می‌دانیم که هیچ رابطه ضروری میان تاریخ و اینکه آیا من برادرزاده‌ای میمون دارم وجود ندارد. ماهیت دلبخواهانه و مضحک چنین گزاره‌هایی، بازتابی از ماهیت دلبخواهانه و مضحک دستگاه منطقی‌ای است که امکان آن‌ها را فراهم می‌کند.</p>
-<h2>نتیجه‌گیری</h2>
+<h2 id="_5">نتیجه‌گیری</h2>
 <p>امروزه کار منطق‌دانان فراسازگار (paraconsistent) مانند گراهام پریست، نقد پوپر از دیالکتیک را به‌طور کامل بی‌اعتبار ساخته است. پوپر ادعا می‌کند که قواعد مقدمه‌سازی فصلی و قیاس فصلی بر تمام اشکال تفکر اعمال می‌شوند. از نظر تجربی، این‌گونه نیست. سیستم‌های ریاضی صوری‌سازی‌شده‌ی متعددی از منطق وجود دارند که قادرند بدون مقدمه‌سازی فصلی یا قیاس فصلی عمل کنند. تنها راه نجات نقد پوپر از دیالکتیک این خواهد بود که نشان داد هگل یا مارکس به‌نحوی از اصل انفجار برای استنتاج ادعاهای دلخواه از تناقض‌های حقیقی سوءاستفاده کرده‌اند. من هیچ شاهدی پیدا نکرده‌ام که نشان دهد هگل، مارکس، انگلس یا لنین، علیرغم باورشان به وجود تناقض‌های حقیقی، تاکنون از اصل انفجار برای استنتاج ادعاهای دلبخواهانه استفاده کرده باشند.</p>
 <hr>
-<h3>پانوشت‌ها و منابع</h3>
+<h3 id="_6">پانوشت‌ها و منابع</h3>
 <div class="footnote">
 <hr>
 <ol>
@@ -305,9 +352,46 @@ Engels, <em>Anti-Dühring</em>. https://www.marxists.org/archive/marx/works/1877
 </li>
 </ol>
 </div>
-        </article>
-    </div>
+                    </article>
+                    
+                    <div class="mt-8 pt-8 border-t border-gray-100">
+                        <a href="https://pishtaz-ml.github.io/%D9%81%D9%84%D8%B3%D9%81%D9%87/" class="text-primary hover:text-secondary font-medium flex items-center">
+                            <svg class="w-4 h-4 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            بازگشت به فلسفه
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky Sidebar (Left side on RTL) -->
+        <div class="lg:w-1/4">
+            <div class="sticky top-24">
+                <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 border-r-4 border-primary pr-3">
+                        فهرست مطالب
+                    </h3>
+                    <div class="toc-container prose prose-sm prose-red max-w-none">
+                        <div class="toc-list">
+<ul>
+<li><a href="#_1">توضیحات</a></li>
+<li><a href="#_2"></a></li>
+<li><a href="#_3">نقد پوپر از دیالکتیک</a></li>
+<li><a href="#_4">چرا استدلال پوپر مردود است</a></li>
+<li><a href="#_5">نتیجه‌گیری</a><ul>
+<li><a href="#_6">پانوشت‌ها و منابع</a></li>
+</ul>
+</li>
+</ul>
 </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div id="live-notes" class="fixed bottom-0 left-0 right-0 z-50 hidden transition-all duration-300 pointer-events-none">
     <div class="max-w-4xl mx-auto px-4 pb-6 pointer-events-auto">
@@ -328,15 +412,6 @@ Engels, <em>Anti-Dühring</em>. https://www.marxists.org/archive/marx/works/1877
             </div>
         </div>
     </div>
-</div>
-
-<div class="max-w-4xl mx-auto mt-8 px-4">
-    <a href="https://pishtaz-ml.github.io/%D9%81%D9%84%D8%B3%D9%81%D9%87/" class="text-primary hover:text-secondary font-medium flex items-center">
-        <svg class="w-4 h-4 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        بازگشت به فلسفه
-    </a>
 </div>
 
     </main>
@@ -553,6 +628,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
     renderNotes();
 });
+    // Scroll Spy for TOC
+    const tocLinks = Array.from(document.querySelectorAll('.toc-list a')).filter(link => link.textContent.trim() !== '');
+    const headers = Array.from(document.querySelectorAll('article h1, article h2, article h3, article h4, article h5, article h6'))
+        .filter(header => header.id && header.textContent.trim() !== '');
+
+    // Hide empty TOC links from DOM if they exist
+    document.querySelectorAll('.toc-list a').forEach(link => {
+        if (link.textContent.trim() === '') {
+            const li = link.closest('li');
+            if (li) li.remove();
+        }
+    });
+
+    function updateActiveToc() {
+        let currentHeaderId = '';
+        const scrollPosition = window.scrollY + 100; // Offset for navbar
+
+        for (const header of headers) {
+            if (header.offsetTop <= scrollPosition) {
+                currentHeaderId = header.id;
+            } else {
+                break;
+            }
+        }
+
+        tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentHeaderId}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveToc);
+    updateActiveToc();
 </script>
 
 </body>

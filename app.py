@@ -210,7 +210,13 @@ ALLOWED_ATTRS = {
     'ol': ['class'],
     'span': ['id', 'class'],
     'section': ['id', 'class'],
-    'small': ['class']
+    'small': ['class'],
+    'h1': ['id', 'class'],
+    'h2': ['id', 'class'],
+    'h3': ['id', 'class'],
+    'h4': ['id', 'class'],
+    'h5': ['id', 'class'],
+    'h6': ['id', 'class']
 }
 ALLOWED_PROTOCOLS = ['http', 'https', 'mailto']
 
@@ -224,8 +230,10 @@ def article_page(category, slug):
     with open(filepath, 'r', encoding='utf-8') as f:
         text = f.read()
         
-    md = markdown.Markdown(extensions=['meta', 'fenced_code', 'tables', 'footnotes'])
+    md = markdown.Markdown(extensions=['meta', 'fenced_code', 'tables', 'footnotes', 'toc'],
+                           extension_configs={'toc': {'title': '', 'toc_class': 'toc-list'}})
     html = md.convert(text)
+    toc_html = md.toc if hasattr(md, 'toc') else ''
     safe_html = bleach.clean(
         html,
         tags=ALLOWED_TAGS,
@@ -233,6 +241,9 @@ def article_page(category, slug):
         protocols=ALLOWED_PROTOCOLS,
         strip=True
     )
+    # We also need to clean the TOC HTML if we use it, but TOC extension usually produces safe HTML with links and IDs.
+    # However, to be safe, let's include it in the context.
+    
     meta = md.Meta
     title = meta.get('title', [slug.replace('-', ' ').title()])[0]
     date = meta.get('date', [''])[0]
@@ -241,6 +252,7 @@ def article_page(category, slug):
     
     return render_template('article.html', 
                            content=safe_html, 
+                           toc=toc_html,
                            title=title, 
                            date=date, 
                            author=author,
