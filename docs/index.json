@@ -1,29 +1,5 @@
 [
   {
-    "title": "درک تورم",
-    "subtitle": "",
-    "summary": "تورم چیست، چه چیزی باعث آن می‌شود و چگونه بر شما تأثیر می‌گذارد؟",
-    "author": "دکتر علی اقتصادی",
-    "date": "1402-08-29",
-    "category": "اقتصاد",
-    "slug": "inflation-theory",
-    "url": "/اقتصاد/inflation-theory/",
-    "cover_url": "/covers/اقتصاد/image.png",
-    "featured": false
-  },
-  {
-    "title": "انقلاب صنعتی",
-    "subtitle": "",
-    "summary": "چگونه انقلاب صنعتی مسیر تاریخ بشر را تغییر داد.",
-    "author": "استاد تاریخ‌دان",
-    "date": "1402-06-24",
-    "category": "تاریخ",
-    "slug": "industrial-revolution",
-    "url": "/تاریخ/industrial-revolution/",
-    "cover_url": "",
-    "featured": false
-  },
-  {
     "title": "پیشتاز برای چه؟",
     "subtitle": "",
     "summary": "مانیفست پیشتاز",

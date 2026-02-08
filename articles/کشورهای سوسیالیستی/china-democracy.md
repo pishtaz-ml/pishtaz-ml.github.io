@@ -7,6 +7,8 @@ summary: در مجموعه پژوهشی «برای ساخت آینده» که ب
 cover: china-building-illustration.webp
 featured: true
 
+![1770577198641](image/china-democracy/1770577198641.png)
+
 ---
 
 ### توضیحات
