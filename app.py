@@ -9,6 +9,7 @@ from datetime import datetime
 app = Flask(__name__)
 ARTICLES_DIR = 'articles'
 BASE_URL = os.environ.get('BASE_URL', 'https://pishtaz-ml.github.io')
+IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp']
 
 def get_categories():
     """Returns a list of category names based on subdirectories in ARTICLES_DIR."""
@@ -33,6 +34,9 @@ def get_article_metadata(category, filename):
     summary = meta.get('summary', [''])[0]
     author = meta.get('author', ['ناشناس'])[0]
     subtitle = meta.get('subtitle', [''])[0]
+    cover = meta.get('cover', [''])[0]
+    featured_raw = meta.get('featured', [''])[0].strip().lower()
+    featured = featured_raw in ('true', 'yes', '1', 'on')
     
     date_obj = None
     if date_str:
@@ -49,7 +53,9 @@ def get_article_metadata(category, filename):
         'author': author,
         'subtitle': subtitle,
         'category': category,
-        'slug': filename.replace('.md', '')
+        'slug': filename.replace('.md', ''),
+        'cover': cover,
+        'featured': featured
     }
 
 def get_articles_in_category(category):
@@ -116,15 +122,42 @@ def inject_categories():
         if p != '/' and not p.endswith('/'):
             p = p + '/'
         return f"{BASE_URL}{p}"
+    def article_cover_url(article):
+        cov = (article.get('cover') or '').strip()
+        if cov.startswith('http://') or cov.startswith('https://'):
+            return cov
+        cat = article['category']
+        slug = article['slug']
+        base_dir = os.path.join(ARTICLES_DIR, cat)
+        if cov:
+            fname = os.path.basename(cov)
+            candidate = os.path.abspath(os.path.join(base_dir, fname))
+            if os.path.exists(candidate):
+                return f"{BASE_URL}/covers/{cat}/{fname}"
+        for ext in IMAGE_EXTS:
+            fname = f"{slug}.{ext}"
+            candidate = os.path.abspath(os.path.join(base_dir, fname))
+            if os.path.exists(candidate):
+                return f"{BASE_URL}/covers/{cat}/{fname}"
+        for ext in IMAGE_EXTS:
+            fname = f"cover.{ext}"
+            candidate = os.path.abspath(os.path.join(base_dir, fname))
+            if os.path.exists(candidate):
+                return f"{BASE_URL}/covers/{cat}/{fname}"
+        return ''
     return dict(categories=get_categories(),
                 path_for=path_for,
                 base_url=BASE_URL,
+                article_cover_url=article_cover_url,
                 now_year=datetime.now().year)
 
 @app.route('/')
 def index():
     articles = get_all_articles()
-    return render_template('index.html', articles=articles)
+    featured_articles = [a for a in articles if a.get('featured')]
+    if len(featured_articles) > 6:
+        featured_articles = featured_articles[:6]
+    return render_template('index.html', articles=articles, featured_articles=featured_articles)
 
 @app.route('/about')
 @app.route('/about/')
@@ -248,5 +281,24 @@ def serve_home_image():
         abort(404)
     return send_file(path, mimetype='image/jpeg')
 
+@app.route('/covers/<category>/<filename>')
+def serve_cover_image(category, filename):
+    if category not in get_categories():
+        abort(404)
+    if not filename or '..' in filename or filename.startswith('.'):
+        abort(400)
+    base_dir = os.path.abspath(os.path.join(ARTICLES_DIR, category))
+    candidate = os.path.abspath(os.path.join(base_dir, filename))
+    if not candidate.startswith(base_dir + os.sep):
+        abort(400)
+    if not os.path.exists(candidate):
+        abort(404)
+    ext = os.path.splitext(filename)[1].lower()
+    mime = 'image/jpeg'
+    if ext == '.png':
+        mime = 'image/png'
+    elif ext == '.webp':
+        mime = 'image/webp'
+    return send_file(candidate, mimetype=mime)
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

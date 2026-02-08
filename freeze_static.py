@@ -1,7 +1,7 @@
 import os
 import shutil
 import json
-from app import app, get_categories, get_articles_in_category
+from app import app, get_categories, get_articles_in_category, ARTICLES_DIR
 
 
 def save_html(rel_path: str, html: str):
@@ -40,6 +40,35 @@ def main():
     index = []
     for cat in categories:
         for art in get_articles_in_category(cat):
+            # Determine cover_url
+            cover_url = ""
+            cov = (art.get("cover") or "").strip()
+            base_dir = os.path.join(ARTICLES_DIR, cat)
+            covers_out_dir = os.path.join("docs", "covers", cat)
+            os.makedirs(covers_out_dir, exist_ok=True)
+            def copy_and_url(fname):
+                src = os.path.join(base_dir, fname)
+                if os.path.exists(src):
+                    shutil.copyfile(src, os.path.join(covers_out_dir, fname))
+                    return f"/covers/{cat}/{fname}"
+                return ""
+            if cov.startswith("http://") or cov.startswith("https://"):
+                cover_url = cov
+            elif cov:
+                fname = os.path.basename(cov)
+                cover_url = copy_and_url(fname)
+            if not cover_url:
+                for ext in ["jpg", "jpeg", "png", "webp"]:
+                    fname = f"{art['slug']}.{ext}"
+                    cover_url = copy_and_url(fname)
+                    if cover_url:
+                        break
+            if not cover_url:
+                for ext in ["jpg", "jpeg", "png", "webp"]:
+                    fname = f"cover.{ext}"
+                    cover_url = copy_and_url(fname)
+                    if cover_url:
+                        break
             index.append({
                 "title": art["title"],
                 "subtitle": art.get("subtitle", ""),
@@ -48,7 +77,9 @@ def main():
                 "date": art.get("date", ""),
                 "category": art["category"],
                 "slug": art["slug"],
-                "url": f"/{art['category']}/{art['slug']}/"
+                "url": f"/{art['category']}/{art['slug']}/",
+                "cover_url": cover_url,
+                "featured": bool(art.get("featured"))
             })
     with open(os.path.join("docs", "index.json"), "w", encoding="utf-8") as jf:
         json.dump(index, jf, ensure_ascii=False, indent=2)

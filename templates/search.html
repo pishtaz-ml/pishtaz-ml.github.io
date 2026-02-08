@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="px-4 py-6 sm:px-0">
-    <div class="mb-8 max-w-3xl mx-auto bg-white/20 backdrop-blur-md ring-1 ring-white/30 rounded-2xl p-6 shadow-lg">
+    <div class="mb-8 max-w-3xl mx-auto bg-paper/20 backdrop-blur-md ring-1 ring-paper/30 rounded-2xl p-6 shadow-lg">
         <h1 class="text-3xl font-bold text-white border-r-4 border-primary pr-4">
             نتایج جستجو
         </h1>
@@ -14,7 +14,7 @@
     </div>
 
     <div id="results" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
-    <div id="no-results" class="text-center py-12 bg-white rounded-lg shadow-sm hidden">
+    <div id="no-results" class="text-center py-12 bg-paper rounded-lg shadow-sm hidden">
         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
@@ -84,9 +84,9 @@
         const frag = document.createDocumentFragment();
         for (const a of filtered) {
             const card = document.createElement('div');
-            card.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100';
+            card.className = 'group bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 ease-out hover:shadow-lg hover:border-primary/30 hover:-translate-y-0.5';
             card.innerHTML = `
-                <div class="p-6">
+                <div class="p-6 transition-colors duration-300">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-medium text-primary bg-red-50 px-2 py-1 rounded">
                             ${a.category}
@@ -95,14 +95,15 @@
                             ${a.date || ''}
                         </span>
                     </div>
+                    ${a.cover_url ? `<div class="rounded-md mb-3 overflow-hidden transition-all duration-500 max-h-40 group-hover:max-h-[60vh]"><img src="${a.cover_url.startsWith('http') ? a.cover_url : '{{ base_url }}' + a.cover_url}" alt="${a.title}" loading="lazy" class="w-full h-40 object-cover transition-all duration-500 group-hover:h-auto group-hover:object-contain"></div>` : ''}
                     <a href="{{ base_url }}${a.url}" class="block mt-2">
-                        <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
+                        <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors text-right">
                             ${a.title}
                         </h2>
                         <div class="mt-2 text-xs text-gray-500">
                             <span class="font-medium">نویسنده:</span> ${a.author || 'ناشناس'}
                         </div>
-                        <p class="mt-3 text-gray-500 line-clamp-3">
+                        <p class="mt-3 text-gray-500 line-clamp-3 text-right">
                             ${a.summary || ''}
                         </p>
                     </a>

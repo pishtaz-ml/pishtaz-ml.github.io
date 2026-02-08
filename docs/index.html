@@ -13,6 +13,7 @@
                     colors: {
                         primary: '#dc2626', // Red-600
                         secondary: '#991b1b', // Red-800
+                        paper: '#F2E5D9',
                     },
                     fontFamily: {
                         sans: ['Vazirmatn', 'sans-serif'],
@@ -62,7 +63,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body class="bg-paper flex flex-col min-h-screen">
 
     <!-- Navbar -->
     <nav id="main-nav" class="bg-primary shadow-lg sticky top-0 z-50 transition-all duration-300">
@@ -185,7 +186,7 @@
     <main class="flex-grow max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 w-full">
         
 <div class="px-4 py-6 sm:px-0">
-    <div class="text-center mb-12 max-w-2xl mx-auto bg-white/20 backdrop-blur-md ring-1 ring-white/30 rounded-2xl p-6 shadow-lg">
+    <div class="text-center mb-12 max-w-2xl mx-auto bg-paper/20 backdrop-blur-md ring-1 ring-paper/30 rounded-2xl p-6 shadow-lg">
         <h1 class="text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
             به <span class="text-primary">پیشتاز</span> خوش آمدید
         </h1>
@@ -225,17 +226,22 @@
         </div>
     </div>
 
-    <div class="border-b border-gray-200 pb-5 mb-8">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">
-            آخرین مقالات
-        </h3>
+    
+
+    <div class="relative mb-8 max-w-4xl mx-auto rounded-2xl bg-paper ring-1 ring-paper/50 shadow-md px-6 py-4">
+        <div class="flex flex-row-reverse items-center gap-3">
+            <span class="inline-block w-1.5 h-6 bg-primary rounded-full"></span>
+            <h3 class="text-lg sm:text-xl font-extrabold text-gray-900 text-right">
+                جدیدترین مقالات
+            </h3>
+        </div>
     </div>
 
     
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         
-        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="p-6">
+        <div class="group bg-white rounded-lg shadow-2xl overflow-hidden transition-all duration-500 ease-out ring-2 ring-primary/30 hover:ring-0 hover:shadow-md hover:bg-paper">
+            <div class="p-6 transition-colors duration-500">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-sm font-medium text-primary bg-red-50 px-2 py-1 rounded">
                         فلسفه
@@ -244,6 +250,12 @@
                         1404-11-14
                     </span>
                 </div>
+                
+                
+                <div class="rounded-md mb-3 overflow-hidden transition-all duration-500 max-h-40 group-hover:max-h-[60vh]">
+                    <img src="https://pishtaz-ml.github.io/covers/فلسفه/image.png" alt="چرا نقد کارل پوپر از دیالکتیک مردود است" loading="lazy" class="w-full h-40 object-cover transition-all duration-500 group-hover:h-auto group-hover:object-contain">
+                </div>
+                
                 <a href="https://pishtaz-ml.github.io/%D9%81%D9%84%D8%B3%D9%81%D9%87/popper_Colin%20Bodayle/" class="block mt-2">
                     <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
                         چرا نقد کارل پوپر از دیالکتیک مردود است
@@ -266,8 +278,8 @@
             </div>
         </div>
         
-        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="p-6">
+        <div class="group bg-white rounded-lg shadow-2xl overflow-hidden transition-all duration-500 ease-out ring-2 ring-primary/30 hover:ring-0 hover:shadow-md hover:bg-paper">
+            <div class="p-6 transition-colors duration-500">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-sm font-medium text-primary bg-red-50 px-2 py-1 rounded">
                         اقتصاد
@@ -276,6 +288,12 @@
                         1402-08-29
                     </span>
                 </div>
+                
+                
+                <div class="rounded-md mb-3 overflow-hidden transition-all duration-500 max-h-40 group-hover:max-h-[60vh]">
+                    <img src="https://pishtaz-ml.github.io/covers/اقتصاد/image.png" alt="درک تورم" loading="lazy" class="w-full h-40 object-cover transition-all duration-500 group-hover:h-auto group-hover:object-contain">
+                </div>
+                
                 <a href="https://pishtaz-ml.github.io/%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF/inflation-theory/" class="block mt-2">
                     <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
                         درک تورم
@@ -298,8 +316,8 @@
             </div>
         </div>
         
-        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="p-6">
+        <div class="group bg-white rounded-lg shadow-2xl overflow-hidden transition-all duration-500 ease-out ring-2 ring-primary/30 hover:ring-0 hover:shadow-md hover:bg-paper">
+            <div class="p-6 transition-colors duration-500">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-sm font-medium text-primary bg-red-50 px-2 py-1 rounded">
                         کشورهای سوسیالیستی
@@ -308,6 +326,8 @@
                         1402-08-14
                     </span>
                 </div>
+                
+                
                 <a href="https://pishtaz-ml.github.io/%DA%A9%D8%B4%D9%88%D8%B1%D9%87%D8%A7%DB%8C%20%D8%B3%D9%88%D8%B3%DB%8C%D8%A7%D9%84%DB%8C%D8%B3%D8%AA%DB%8C/brazil-analysis/" class="block mt-2">
                     <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
                         برزیل: قدرتی نوظهور؟
@@ -330,8 +350,8 @@
             </div>
         </div>
         
-        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="p-6">
+        <div class="group bg-white rounded-lg shadow-2xl overflow-hidden transition-all duration-500 ease-out ring-2 ring-primary/30 hover:ring-0 hover:shadow-md hover:bg-paper">
+            <div class="p-6 transition-colors duration-500">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-sm font-medium text-primary bg-red-50 px-2 py-1 rounded">
                         سیاست
@@ -340,6 +360,8 @@
                         1402-07-18
                     </span>
                 </div>
+                
+                
                 <a href="https://pishtaz-ml.github.io/%D8%B3%DB%8C%D8%A7%D8%B3%D8%AA/democracy-evolution/" class="block mt-2">
                     <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
                         تکامل دموکراسی
@@ -362,8 +384,8 @@
             </div>
         </div>
         
-        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-            <div class="p-6">
+        <div class="group bg-white rounded-lg shadow-2xl overflow-hidden transition-all duration-500 ease-out ring-2 ring-primary/30 hover:ring-0 hover:shadow-md hover:bg-paper">
+            <div class="p-6 transition-colors duration-500">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-sm font-medium text-primary bg-red-50 px-2 py-1 rounded">
                         تاریخ
@@ -372,6 +394,8 @@
                         1402-06-24
                     </span>
                 </div>
+                
+                
                 <a href="https://pishtaz-ml.github.io/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE/industrial-revolution/" class="block mt-2">
                     <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
                         انقلاب صنعتی
