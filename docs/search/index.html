@@ -14,6 +14,7 @@
                         primary: '#dc2626', // Red-600
                         secondary: '#991b1b', // Red-800
                         paper: '#F2E5D9',
+                        cardhover: '#FFBDC5',
                     },
                     fontFamily: {
                         sans: ['Vazirmatn', 'sans-serif'],
@@ -353,7 +354,7 @@
         const frag = document.createDocumentFragment();
         for (const a of filtered) {
             const card = document.createElement('div');
-            card.className = 'group bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 ease-out hover:shadow-lg hover:border-primary/30 hover:-translate-y-0.5';
+            card.className = 'group bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 ease-out hover:shadow-lg hover:border-primary/30 hover:-translate-y-0.5 hover:bg-cardhover';
             card.innerHTML = `
                 <div class="p-6 transition-colors duration-300">
                     <div class="flex items-center justify-between mb-2">
@@ -364,7 +365,7 @@
                             ${a.date || ''}
                         </span>
                     </div>
-                    ${a.cover_url ? `<div class="rounded-md mb-3 overflow-hidden transition-all duration-500 max-h-40 group-hover:max-h-[60vh]"><img src="${a.cover_url.startsWith('http') ? a.cover_url : 'https://pishtaz-ml.github.io' + a.cover_url}" alt="${a.title}" loading="lazy" class="w-full h-40 object-cover transition-all duration-500 group-hover:h-auto group-hover:object-contain"></div>` : ''}
+                    ${a.cover_url ? `<div class="rounded-md mb-3 overflow-hidden transition-all duration-500 max-h-40 group-hover:max-h-[200vh]"><img src="${a.cover_url.startsWith('http') ? a.cover_url : 'https://pishtaz-ml.github.io' + a.cover_url}" alt="${a.title}" loading="lazy" class="w-full h-40 object-cover transition-all duration-500 group-hover:h-auto"></div>` : ''}
                     <a href="https://pishtaz-ml.github.io${a.url}" class="block mt-2">
                         <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors text-right">
                             ${a.title}

@@ -53,7 +53,7 @@
     </div>
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-10">
         {% for article in featured_articles %}
-        <div class="group bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 ease-out hover:shadow-lg hover:border-primary/30 hover:-translate-y-0.5">
+        <div class="group bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 ease-out hover:shadow-lg hover:border-primary/30 hover:-translate-y-0.5 hover:bg-cardhover">
             <div class="p-6 transition-colors duration-300">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-sm font-medium text-primary bg-red-50 px-2 py-1 rounded">
@@ -65,8 +65,8 @@
                 </div>
                 {% set cover = article_cover_url(article) %}
                 {% if cover %}
-                <div class="rounded-md mb-3 overflow-hidden transition-all duration-500 max-h-40 group-hover:max-h-[60vh]">
-                    <img src="{{ cover }}" alt="{{ article.title }}" loading="lazy" class="w-full h-40 object-cover transition-all duration-500 group-hover:h-auto group-hover:object-contain">
+                <div class="rounded-md mb-3 overflow-hidden transition-all duration-500 max-h-40 group-hover:max-h-[200vh]">
+                    <img src="{{ cover }}" alt="{{ article.title }}" loading="lazy" class="w-full h-40 object-cover transition-all duration-500 group-hover:h-auto">
                 </div>
                 {% endif %}
                 <a href="{{ path_for('article_page', category=article.category, slug=article.slug) }}" class="block mt-2">
@@ -106,8 +106,8 @@
     {% if articles %}
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {% for article in articles %}
-        <div class="group bg-white rounded-lg shadow-2xl overflow-hidden transition-all duration-500 ease-out ring-2 ring-primary/30 hover:ring-0 hover:shadow-md hover:bg-paper">
-            <div class="p-6 transition-colors duration-500">
+        <div class="group bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 ease-out hover:shadow-lg hover:border-primary/30 hover:-translate-y-0.5 hover:bg-cardhover">
+            <div class="p-6 transition-colors duration-300">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-sm font-medium text-primary bg-red-50 px-2 py-1 rounded">
                         {{ article.category }}
@@ -118,18 +118,18 @@
                 </div>
                 {% set cover = article_cover_url(article) %}
                 {% if cover %}
-                <div class="rounded-md mb-3 overflow-hidden transition-all duration-500 max-h-40 group-hover:max-h-[60vh]">
-                    <img src="{{ cover }}" alt="{{ article.title }}" loading="lazy" class="w-full h-40 object-cover transition-all duration-500 group-hover:h-auto group-hover:object-contain">
+                <div class="rounded-md mb-3 overflow-hidden transition-all duration-500 max-h-40 group-hover:max-h-[200vh]">
+                    <img src="{{ cover }}" alt="{{ article.title }}" loading="lazy" class="w-full h-40 object-cover transition-all duration-500 group-hover:h-auto">
                 </div>
                 {% endif %}
                 <a href="{{ path_for('article_page', category=article.category, slug=article.slug) }}" class="block mt-2">
-                    <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors">
+                    <h2 class="text-xl font-semibold text-gray-900 hover:text-primary transition-colors text-right">
                         {{ article.title }}
                     </h2>
                     <div class="mt-2 text-xs text-gray-500">
                         <span class="font-medium">نویسنده:</span> {{ article.author }}
                     </div>
-                    <p class="mt-3 text-gray-500 line-clamp-3">
+                    <p class="mt-3 text-gray-500 line-clamp-3 text-right">
                         {{ article.summary }}
                     </p>
                 </a>
