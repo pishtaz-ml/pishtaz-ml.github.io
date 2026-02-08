@@ -223,6 +223,27 @@
     </div>
 </div>
 
+<div id="live-notes" class="fixed bottom-0 left-0 right-0 z-50 hidden transition-all duration-300 pointer-events-none">
+    <div class="max-w-4xl mx-auto px-4 pb-6 pointer-events-auto">
+        <div id="live-notes-inner" class="bg-white/95 backdrop-blur shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.2)] ring-1 ring-black/5 rounded-2xl overflow-hidden flex flex-col">
+            <div class="px-6 py-3 bg-gray-50/80 border-b border-gray-100 flex items-center justify-between shrink-0">
+                <div class="flex items-center space-x-2 space-x-reverse">
+                    <div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+                    <div class="text-xs font-bold text-gray-500 uppercase tracking-wider">یادداشت‌های این بخش</div>
+                </div>
+                <button id="toggle-notes" class="p-1.5 hover:bg-gray-200 rounded-xl transition-colors">
+                    <svg id="toggle-icon" class="w-5 h-5 text-gray-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+            </div>
+            <div id="live-notes-content-container" class="overflow-y-auto transition-all duration-300 ease-in-out">
+                <div id="live-notes-content" class="px-6 py-5 space-y-5"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="max-w-4xl mx-auto mt-8 px-4">
     <a href="https://pishtaz-ml.github.io/%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF/" class="text-primary hover:text-secondary font-medium flex items-center">
         <svg class="w-4 h-4 ml-1 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -321,5 +342,132 @@
         });
     </script>
     
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const article = document.querySelector('article.prose');
+    if (!article) return;
+    const notesContainer = document.getElementById('live-notes');
+    const notesPanel = document.getElementById('live-notes-inner');
+    const notesContent = document.getElementById('live-notes-content');
+    const notesScrollContainer = document.getElementById('live-notes-content-container');
+    const toggleBtn = document.getElementById('toggle-notes');
+    const toggleIcon = document.getElementById('toggle-icon');
+    
+    let isCollapsed = false;
+    toggleBtn.addEventListener('click', function() {
+        isCollapsed = !isCollapsed;
+        if (isCollapsed) {
+            notesScrollContainer.style.maxHeight = '0';
+            toggleIcon.style.transform = 'rotate(180deg)';
+        } else {
+            notesScrollContainer.style.maxHeight = '250px'; // Set a reasonable default for bottom center
+            toggleIcon.style.transform = 'rotate(0deg)';
+        }
+    });
+
+    function getText(el) {
+        const clone = el.cloneNode(true);
+        const backrefs = clone.querySelectorAll('a[href^="#fnref"], a.footnote-backref');
+        backrefs.forEach(b => b.remove());
+        return clone.innerHTML.trim();
+    }
+
+    const footnoteItems = {};
+    const footnotesBlock = article.querySelector('.footnotes, .footnote');
+    if (footnotesBlock) {
+        const items = footnotesBlock.querySelectorAll('li[id]');
+        items.forEach(li => {
+            footnoteItems[li.id] = getText(li);
+        });
+    }
+
+    const citationItems = {};
+    const refsBlock = article.querySelector('#references, .references');
+    if (refsBlock) {
+        const items = refsBlock.querySelectorAll('[id]');
+        items.forEach(el => {
+            citationItems[el.id] = getText(el);
+        });
+    }
+
+    const observed = [];
+    const elToId = new Map();
+    article.querySelectorAll('sup a[href^="#fn"]').forEach(a => {
+        const sup = a.closest('sup') || a;
+        const id = (a.getAttribute('href') || '').replace(/^#/, '');
+        if (id) {
+            observed.push(sup);
+            elToId.set(sup, id);
+        }
+    });
+    article.querySelectorAll('a[href^="#cite"]').forEach(a => {
+        const id = (a.getAttribute('href') || '').replace(/^#/, '');
+        if (id) {
+            observed.push(a);
+            elToId.set(a, id);
+        }
+    });
+
+    const visibleSet = new Set();
+    const observer = new IntersectionObserver(entries => {
+        let changed = false;
+        entries.forEach(e => {
+            const targetId = elToId.get(e.target);
+            if (!targetId) return;
+            if (e.isIntersecting) {
+                visibleSet.add(targetId);
+            } else {
+                visibleSet.delete(targetId);
+            }
+            changed = true;
+        });
+        if (changed) renderNotes();
+    }, { root: null, threshold: 0, rootMargin: '-10% 0px -10% 0px' });
+
+    observed.forEach(el => observer.observe(el));
+
+    function renderNotes() {
+        const items = [];
+        Array.from(visibleSet).forEach(id => {
+            if (footnoteItems[id]) {
+                const num = id.replace(/^\D+/, '');
+                items.push({ type: 'footnote', id, num, html: footnoteItems[id] });
+            } else if (citationItems[id]) {
+                const num = id.replace(/^\D+/, '');
+                items.push({ type: 'citation', id, num, html: citationItems[id] });
+            }
+        });
+        
+        items.sort((a,b) => {
+            const numA = parseInt(a.num.replace(/\D/g, '')) || 0;
+            const numB = parseInt(b.num.replace(/\D/g, '')) || 0;
+            return numA - numB;
+        });
+
+        if (!items.length) {
+            notesContainer.classList.add('hidden');
+            return;
+        }
+        
+        notesContainer.classList.remove('hidden');
+        notesContent.innerHTML = '';
+        
+        items.forEach(item => {
+            const wrap = document.createElement('div');
+            wrap.className = 'text-sm text-gray-800 border-b border-gray-100 last:border-0 pb-4 last:pb-0';
+            const label = item.type === 'footnote' ? 'یادداشت' : 'ارجاع';
+            wrap.innerHTML = `<div class="font-bold text-primary mb-1 text-xs uppercase tracking-tight">${label} ${item.num}</div><div class="prose prose-sm max-w-none text-gray-600 leading-relaxed">${item.html}</div>`;
+            notesContent.appendChild(wrap);
+        });
+
+        if (!isCollapsed) {
+            notesScrollContainer.style.maxHeight = '250px';
+        }
+    }
+
+    renderNotes();
+});
+</script>
+
 </body>
 </html>

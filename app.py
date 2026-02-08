@@ -195,15 +195,22 @@ ALLOWED_TAGS = [
     'p','h1','h2','h3','h4','h5','h6','strong','em',
     'ul','ol','li','blockquote','code','pre',
     'table','thead','tbody','tr','th','td',
-    'a','img'
+    'a','img','sup','div','span','section','small'
 ]
 ALLOWED_ATTRS = {
-    'a': ['href', 'title', 'rel', 'target'],
-    'img': ['src', 'alt', 'title', 'loading'],
-    'th': ['align'],
-    'td': ['align'],
+    'a': ['href', 'title', 'rel', 'target', 'id', 'class'],
+    'img': ['src', 'alt', 'title', 'loading', 'class'],
+    'th': ['align', 'class'],
+    'td': ['align', 'class'],
     'code': ['class'],
     'pre': ['class'],
+    'sup': ['id', 'class'],
+    'div': ['id', 'class'],
+    'li': ['id', 'class'],
+    'ol': ['class'],
+    'span': ['id', 'class'],
+    'section': ['id', 'class'],
+    'small': ['class']
 }
 ALLOWED_PROTOCOLS = ['http', 'https', 'mailto']
 
@@ -217,7 +224,7 @@ def article_page(category, slug):
     with open(filepath, 'r', encoding='utf-8') as f:
         text = f.read()
         
-    md = markdown.Markdown(extensions=['meta', 'fenced_code', 'tables'])
+    md = markdown.Markdown(extensions=['meta', 'fenced_code', 'tables', 'footnotes'])
     html = md.convert(text)
     safe_html = bleach.clean(
         html,
