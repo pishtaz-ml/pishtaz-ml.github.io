@@ -195,7 +195,7 @@ ALLOWED_TAGS = [
     'p','h1','h2','h3','h4','h5','h6','strong','em',
     'ul','ol','li','blockquote','code','pre',
     'table','thead','tbody','tr','th','td',
-    'a','img','sup','div','span','section','small'
+    'a','img','sup','div','span','section','small','hr'
 ]
 ALLOWED_ATTRS = {
     'a': ['href', 'title', 'rel', 'target', 'id', 'class'],
