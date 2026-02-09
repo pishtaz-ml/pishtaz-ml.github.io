@@ -228,6 +228,18 @@ def article_page(category, slug):
         
     with open(filepath, 'r', encoding='utf-8') as f:
         text = f.read()
+    
+    # Pre-process markdown to fix image paths
+    # Replace ![alt](image/...) with ![alt](/covers/category/image/...)
+    # Replace ![alt](filename.png) with ![alt](/covers/category/filename.png)
+    def fix_img_path(match):
+        alt = match.group(1)
+        path = match.group(2)
+        if path.startswith('http') or path.startswith('/'):
+            return f'![{alt}]({path})'
+        return f'![{alt}]({BASE_URL}/covers/{category}/{path})'
+    
+    text = re.sub(r'!\[(.*?)\]\((.*?)\)', fix_img_path, text)
         
     md = markdown.Markdown(extensions=['meta', 'fenced_code', 'tables', 'footnotes', 'toc'],
                            extension_configs={'toc': {'title': '', 'toc_class': 'toc-list'}})
@@ -306,7 +318,7 @@ def serve_logo():
         abort(404)
     return send_file(path, mimetype='image/png')
 
-@app.route('/covers/<category>/<filename>')
+@app.route('/covers/<category>/<path:filename>')
 def serve_cover_image(category, filename):
     if category not in get_categories():
         abort(404)
@@ -324,6 +336,10 @@ def serve_cover_image(category, filename):
         mime = 'image/png'
     elif ext == '.webp':
         mime = 'image/webp'
+    elif ext == '.gif':
+        mime = 'image/gif'
+    elif ext == '.svg':
+        mime = 'image/svg+xml'
     return send_file(candidate, mimetype=mime)
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

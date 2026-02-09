@@ -84,6 +84,21 @@ def main():
     with open(os.path.join("docs", "index.json"), "w", encoding="utf-8") as jf:
         json.dump(index, jf, ensure_ascii=False, indent=2)
 
+    # Copy all images from articles directory to docs/covers
+    for cat in get_categories():
+        src_cat_dir = os.path.join(ARTICLES_DIR, cat)
+        dest_covers_dir = os.path.join("docs", "covers", cat)
+        os.makedirs(dest_covers_dir, exist_ok=True)
+        
+        for root, dirs, files in os.walk(src_cat_dir):
+            for file in files:
+                if any(file.lower().endswith(ext) for ext in [".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg"]):
+                    src_file = os.path.join(root, file)
+                    rel_path = os.path.relpath(src_file, src_cat_dir)
+                    dest_file = os.path.join(dest_covers_dir, rel_path)
+                    os.makedirs(os.path.dirname(dest_file), exist_ok=True)
+                    shutil.copyfile(src_file, dest_file)
+
     shutil.copyfile("home.JPG", os.path.join("docs", "home.JPG"))
     shutil.copyfile("logo.png", os.path.join("docs", "logo.png"))
 
