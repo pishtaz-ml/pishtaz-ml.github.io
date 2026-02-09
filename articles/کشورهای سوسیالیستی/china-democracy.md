@@ -4,7 +4,7 @@ title: ایجاد دموکراسی مردمی تمام‌فرآیندی در چ�
 date: 1404-11-14
 author: (Paweł Wargan and Jason Hickel) پاوِل وارگان و جیسون هیکل
 summary: در مجموعه پژوهشی «برای ساخت آینده» که به ساخت سوسیالیستی معاصر می‌پردازد، پاوِل وارگان و جیسون هیکل مفهوم «دموکراسی مردمی تمام‌فرآیندی» در چین را بررسی می‌کنند؛ نظامی پیچیده مبتنی بر مشارکت سیاسی گسترده و حکمرانیِ از پایین که به‌عنوان یکی از پایه‌های مادی فرآیند مدرنیزاسیون سوسیالیستی چین عمل می‌کند.
-cover: china-building-illustration.webp
+cover: image/china-democracy/china-building-illustration.webp
 featured: true
 
 ![1770577198641](image/china-democracy/1770577198641.png)
