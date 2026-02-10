@@ -8,7 +8,7 @@
     "category": "اقتصاد",
     "slug": "هوش مصنوعی-و-تخریب-خلاقانه",
     "url": "/اقتصاد/هوش مصنوعی-و-تخریب-خلاقانه/",
-    "cover_url": "",
+    "cover_url": "/covers/اقتصاد/image/roberts-ai/ai.webp",
     "featured": true
   },
   {
@@ -32,7 +32,7 @@
     "category": "فلسفه",
     "slug": "popper_Colin Bodayle",
     "url": "/فلسفه/popper_Colin Bodayle/",
-    "cover_url": "",
+    "cover_url": "/covers/فلسفه/image/popper/image.png",
     "featured": true
   },
   {
@@ -44,7 +44,7 @@
     "category": "کشورهای سوسیالیستی",
     "slug": "china-democracy",
     "url": "/کشورهای سوسیالیستی/china-democracy/",
-    "cover_url": "",
+    "cover_url": "/covers/کشورهای سوسیالیستی/image/china-democracy/china-building-illustration.webp",
     "featured": true
   }
 ]

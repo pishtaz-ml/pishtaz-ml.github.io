@@ -130,16 +130,34 @@ def inject_categories():
         slug = article['slug']
         base_dir = os.path.join(ARTICLES_DIR, cat)
         if cov:
+            # Support nested paths like 'image/cover.png'
+            candidate = os.path.abspath(os.path.join(base_dir, cov))
+            if os.path.exists(candidate) and candidate.startswith(os.path.abspath(base_dir) + os.sep):
+                return f"{BASE_URL}/covers/{cat}/{cov}"
+        # Fallback to older behavior (looking for filename only)
+        if cov:
             fname = os.path.basename(cov)
             candidate = os.path.abspath(os.path.join(base_dir, fname))
             if os.path.exists(candidate):
                 return f"{BASE_URL}/covers/{cat}/{fname}"
         for ext in IMAGE_EXTS:
+            # Check image/{slug}/cover.{ext}
+            fname = os.path.join('image', slug, f"cover.{ext}")
+            candidate = os.path.abspath(os.path.join(base_dir, fname))
+            if os.path.exists(candidate):
+                return f"{BASE_URL}/covers/{cat}/{fname}"
+            # Check image/{slug}/{slug}.{ext}
+            fname = os.path.join('image', slug, f"{slug}.{ext}")
+            candidate = os.path.abspath(os.path.join(base_dir, fname))
+            if os.path.exists(candidate):
+                return f"{BASE_URL}/covers/{cat}/{fname}"
+            # Check {slug}.{ext} in category root
             fname = f"{slug}.{ext}"
             candidate = os.path.abspath(os.path.join(base_dir, fname))
             if os.path.exists(candidate):
                 return f"{BASE_URL}/covers/{cat}/{fname}"
         for ext in IMAGE_EXTS:
+            # Check cover.{ext} in category root
             fname = f"cover.{ext}"
             candidate = os.path.abspath(os.path.join(base_dir, fname))
             if os.path.exists(candidate):

@@ -46,25 +46,43 @@ def main():
             base_dir = os.path.join(ARTICLES_DIR, cat)
             covers_out_dir = os.path.join("docs", "covers", cat)
             os.makedirs(covers_out_dir, exist_ok=True)
-            def copy_and_url(fname):
-                src = os.path.join(base_dir, fname)
+            def copy_and_url(rel_path):
+                src = os.path.join(base_dir, rel_path)
                 if os.path.exists(src):
-                    shutil.copyfile(src, os.path.join(covers_out_dir, fname))
-                    return f"/covers/{cat}/{fname}"
+                    dest_file = os.path.join(covers_out_dir, rel_path)
+                    os.makedirs(os.path.dirname(dest_file), exist_ok=True)
+                    shutil.copyfile(src, dest_file)
+                    return f"/covers/{cat}/{rel_path}"
                 return ""
             if cov.startswith("http://") or cov.startswith("https://"):
                 cover_url = cov
             elif cov:
-                fname = os.path.basename(cov)
-                cover_url = copy_and_url(fname)
+                # Try as a full relative path first (e.g. 'image/cover.png')
+                cover_url = copy_and_url(cov)
+                if not cover_url:
+                    # Fallback to basename only
+                    fname = os.path.basename(cov)
+                    cover_url = copy_and_url(fname)
             if not cover_url:
                 for ext in ["jpg", "jpeg", "png", "webp"]:
+                    # Check image/{slug}/cover.{ext}
+                    fname = os.path.join('image', art['slug'], f"cover.{ext}")
+                    cover_url = copy_and_url(fname)
+                    if cover_url:
+                        break
+                    # Check image/{slug}/{slug}.{ext}
+                    fname = os.path.join('image', art['slug'], f"{art['slug']}.{ext}")
+                    cover_url = copy_and_url(fname)
+                    if cover_url:
+                        break
+                    # Check {slug}.{ext} in category root
                     fname = f"{art['slug']}.{ext}"
                     cover_url = copy_and_url(fname)
                     if cover_url:
                         break
             if not cover_url:
                 for ext in ["jpg", "jpeg", "png", "webp"]:
+                    # Check cover.{ext} in category root
                     fname = f"cover.{ext}"
                     cover_url = copy_and_url(fname)
                     if cover_url:
