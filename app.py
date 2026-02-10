@@ -8,7 +8,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 ARTICLES_DIR = 'articles'
-BASE_URL = os.environ.get('BASE_URL', 'https://pishtaz-ml.github.io')
+BASE_URL = os.environ.get('BASE_URL', '')
 IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp']
 
 def get_categories():
