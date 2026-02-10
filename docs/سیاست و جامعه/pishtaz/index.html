@@ -104,6 +104,31 @@
         font-weight: 600;
         background-color: #fee2e2;
     }
+
+    /* Figure & Caption Styling */
+    .article-figure, figure {
+        margin: 2rem auto;
+        display: table; /* Shrink-wrap to image width if possible, or use block */
+        max-width: 100%;
+        text-align: center;
+    }
+    .article-figure img, figure img {
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    .article-caption, figcaption {
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: #4b5563;
+        font-style: italic;
+        padding: 0 1rem;
+        border-right: 3px solid #e5e7eb;
+        display: inline-block;
+        text-align: right;
+    }
 </style>
 
 

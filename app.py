@@ -212,7 +212,8 @@ ALLOWED_TAGS = [
     'p','h1','h2','h3','h4','h5','h6','strong','em',
     'ul','ol','li','blockquote','code','pre',
     'table','thead','tbody','tr','th','td',
-    'a','img','sup','div','span','section','small','hr'
+    'a','img','sup','div','span','section','small','hr',
+    'figure', 'figcaption'
 ]
 ALLOWED_ATTRS = {
     'a': ['href', 'title', 'rel', 'target', 'id', 'class'],
@@ -233,7 +234,9 @@ ALLOWED_ATTRS = {
     'h3': ['id', 'class'],
     'h4': ['id', 'class'],
     'h5': ['id', 'class'],
-    'h6': ['id', 'class']
+    'h6': ['id', 'class'],
+    'figure': ['class'],
+    'figcaption': ['class']
 }
 ALLOWED_PROTOCOLS = ['http', 'https', 'mailto']
 
@@ -254,8 +257,14 @@ def article_page(category, slug):
         alt = match.group(1)
         path = match.group(2)
         if path.startswith('http') or path.startswith('/'):
-            return f'![{alt}]({path})'
-        return f'![{alt}]({BASE_URL}/covers/{category}/{path})'
+            full_path = path
+        else:
+            full_path = f'{BASE_URL}/covers/{category}/{path}'
+        
+        if alt and not alt.isdigit() and len(alt) > 3: 
+            # If there's a caption (alt text) that isn't just a number and is long enough
+            return f'<figure class="article-figure"><img src="{full_path}" alt="{alt}"><figcaption class="article-caption">{alt}</figcaption></figure>'
+        return f'![{alt}]({full_path})'
     
     text = re.sub(r'!\[(.*?)\]\((.*?)\)', fix_img_path, text)
         
