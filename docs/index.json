@@ -1,5 +1,17 @@
 [
   {
+    "title": "هوش مصنوعی و تخریب خلاقانه",
+    "subtitle": "",
+    "summary": "مروری بر نقد پوپر از دیالکتیک و رد آن.",
+    "author": "(Michael Roberts) مایکل رابرتز",
+    "date": "1404-11-14",
+    "category": "اقتصاد",
+    "slug": "هوش مصنوعی-و-تخریب-خلاقانه",
+    "url": "/اقتصاد/هوش مصنوعی-و-تخریب-خلاقانه/",
+    "cover_url": "",
+    "featured": true
+  },
+  {
     "title": "پیشتاز برای چه؟",
     "subtitle": "",
     "summary": "مانیفست پیشتاز",
@@ -20,7 +32,7 @@
     "category": "فلسفه",
     "slug": "popper_Colin Bodayle",
     "url": "/فلسفه/popper_Colin Bodayle/",
-    "cover_url": "/covers/فلسفه/image.png",
+    "cover_url": "",
     "featured": true
   },
   {
