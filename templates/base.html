@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}پیشتاز{% endblock %}</title>
+    
+    <!-- Social Media Meta Tags -->
+    <meta name="description" content="{% block meta_description %}پیشتاز - پلتفرم تحلیل و بررسی سوسیالیستی معاصر{% endblock %}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ base_url }}{{ request.path }}">
+    <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ self.meta_description() }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ base_url }}/home.JPG{% endblock %}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ base_url }}{{ request.path }}">
+    <meta property="twitter:title" content="{% block twitter_title %}{{ self.og_title() }}{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}{{ self.og_description() }}{% endblock %}">
+    <meta property="twitter:image" content="{% block twitter_image %}{{ self.og_image() }}{% endblock %}">
+
     <link rel="icon" type="image/png" href="{{ base_url }}/logo.png">
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />

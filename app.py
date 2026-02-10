@@ -8,7 +8,8 @@ from datetime import datetime
 
 app = Flask(__name__)
 ARTICLES_DIR = 'articles'
-BASE_URL = os.environ.get('BASE_URL', '')
+# Default to production URL if not set
+BASE_URL = os.environ.get('BASE_URL', 'https://pishtaz-ml.github.io').rstrip('/')
 IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp']
 
 def get_categories():
@@ -114,6 +115,48 @@ def search_articles(query):
                 
     return results
 
+def article_cover_url(article):
+    cov = (article.get('cover') or '').strip()
+    if cov.startswith('http://') or cov.startswith('https://'):
+        return cov
+    cat = article['category']
+    slug = article['slug']
+    base_dir = os.path.join(ARTICLES_DIR, cat)
+    if cov:
+        # Support nested paths like 'image/cover.png'
+        candidate = os.path.abspath(os.path.join(base_dir, cov))
+        if os.path.exists(candidate) and candidate.startswith(os.path.abspath(base_dir) + os.sep):
+            return f"{BASE_URL}/covers/{cat}/{cov}"
+    # Fallback to older behavior (looking for filename only)
+    if cov:
+        fname = os.path.basename(cov)
+        candidate = os.path.abspath(os.path.join(base_dir, fname))
+        if os.path.exists(candidate):
+            return f"{BASE_URL}/covers/{cat}/{fname}"
+    for ext in IMAGE_EXTS:
+        # Check image/{slug}/cover.{ext}
+        fname = os.path.join('image', slug, f"cover.{ext}")
+        candidate = os.path.abspath(os.path.join(base_dir, fname))
+        if os.path.exists(candidate):
+            return f"{BASE_URL}/covers/{cat}/{fname}"
+        # Check image/{slug}/{slug}.{ext}
+        fname = os.path.join('image', slug, f"{slug}.{ext}")
+        candidate = os.path.abspath(os.path.join(base_dir, fname))
+        if os.path.exists(candidate):
+            return f"{BASE_URL}/covers/{cat}/{fname}"
+        # Check {slug}.{ext} in category root
+        fname = f"{slug}.{ext}"
+        candidate = os.path.abspath(os.path.join(base_dir, fname))
+        if os.path.exists(candidate):
+            return f"{BASE_URL}/covers/{cat}/{fname}"
+    for ext in IMAGE_EXTS:
+        # Check cover.{ext} in category root
+        fname = f"cover.{ext}"
+        candidate = os.path.abspath(os.path.join(base_dir, fname))
+        if os.path.exists(candidate):
+            return f"{BASE_URL}/covers/{cat}/{fname}"
+    return ''
+
 @app.context_processor
 def inject_categories():
     """Inject categories into all templates."""
@@ -122,47 +165,6 @@ def inject_categories():
         if p != '/' and not p.endswith('/'):
             p = p + '/'
         return f"{BASE_URL}{p}"
-    def article_cover_url(article):
-        cov = (article.get('cover') or '').strip()
-        if cov.startswith('http://') or cov.startswith('https://'):
-            return cov
-        cat = article['category']
-        slug = article['slug']
-        base_dir = os.path.join(ARTICLES_DIR, cat)
-        if cov:
-            # Support nested paths like 'image/cover.png'
-            candidate = os.path.abspath(os.path.join(base_dir, cov))
-            if os.path.exists(candidate) and candidate.startswith(os.path.abspath(base_dir) + os.sep):
-                return f"{BASE_URL}/covers/{cat}/{cov}"
-        # Fallback to older behavior (looking for filename only)
-        if cov:
-            fname = os.path.basename(cov)
-            candidate = os.path.abspath(os.path.join(base_dir, fname))
-            if os.path.exists(candidate):
-                return f"{BASE_URL}/covers/{cat}/{fname}"
-        for ext in IMAGE_EXTS:
-            # Check image/{slug}/cover.{ext}
-            fname = os.path.join('image', slug, f"cover.{ext}")
-            candidate = os.path.abspath(os.path.join(base_dir, fname))
-            if os.path.exists(candidate):
-                return f"{BASE_URL}/covers/{cat}/{fname}"
-            # Check image/{slug}/{slug}.{ext}
-            fname = os.path.join('image', slug, f"{slug}.{ext}")
-            candidate = os.path.abspath(os.path.join(base_dir, fname))
-            if os.path.exists(candidate):
-                return f"{BASE_URL}/covers/{cat}/{fname}"
-            # Check {slug}.{ext} in category root
-            fname = f"{slug}.{ext}"
-            candidate = os.path.abspath(os.path.join(base_dir, fname))
-            if os.path.exists(candidate):
-                return f"{BASE_URL}/covers/{cat}/{fname}"
-        for ext in IMAGE_EXTS:
-            # Check cover.{ext} in category root
-            fname = f"cover.{ext}"
-            candidate = os.path.abspath(os.path.join(base_dir, fname))
-            if os.path.exists(candidate):
-                return f"{BASE_URL}/covers/{cat}/{fname}"
-        return ''
     return dict(categories=get_categories(),
                 path_for=path_for,
                 base_url=BASE_URL,
@@ -287,6 +289,8 @@ def article_page(category, slug):
     date = meta.get('date', [''])[0]
     author = meta.get('author', ['ناشناس'])[0]
     subtitle = meta.get('subtitle', [''])[0]
+    summary = meta.get('summary', [''])[0]
+    cover = article_cover_url({'category': category, 'slug': slug, 'cover': meta.get('cover', [''])[0]})
     
     return render_template('article.html', 
                            content=safe_html, 
@@ -295,6 +299,8 @@ def article_page(category, slug):
                            date=date, 
                            author=author,
                            subtitle=subtitle,
+                           summary=summary,
+                           cover=cover,
                            category=category)
 
 @app.route('/index.json')

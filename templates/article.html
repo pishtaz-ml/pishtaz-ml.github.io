@@ -2,6 +2,9 @@
 
 {% block title %}{{ title }} - پیشتاز{% endblock %}
 
+{% block meta_description %}{{ summary or subtitle or "پیشتاز - پلتفرم تحلیل و بررسی سوسیالیستی معاصر" }}{% endblock %}
+{% block og_image %}{{ cover or (base_url + "/home.JPG") }}{% endblock %}
+
 {% block body_background %}
 <style>
     html {
