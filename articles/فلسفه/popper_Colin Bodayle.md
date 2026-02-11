@@ -2,7 +2,7 @@ lang:fa
 dir:rtl
 title: چرا نقد کارل پوپر از دیالکتیک مردود است
 subtitle: دیالکتیک و قانون عدم تناقض
-date: 1404-11-14
+date: 1404-11-21
 author: (Colin Bodayle) کالین بادِیل
 summary: مروری بر نقد پوپر از دیالکتیک و رد آن.
 cover: image/popper/image.png
