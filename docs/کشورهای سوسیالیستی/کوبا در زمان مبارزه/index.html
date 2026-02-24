@@ -546,19 +546,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function renderNotes() {
         const items = [];
-        Array.from(visibleSet).forEach(id => {
+        // Convert set to array
+        const visibleIds = Array.from(visibleSet);
+        
+        visibleIds.forEach(id => {
+            let content = '';
+            let label = '';
+            let num = '';
+
             if (footnoteItems[id]) {
-                const num = id.replace(/^\D+/, '');
-                items.push({ type: 'footnote', id, num, html: footnoteItems[id] });
+                content = footnoteItems[id];
+                label = 'یادداشت';
+                // Extract number from id (e.g., fn:1 -> 1)
+                num = id.replace(/^\D+/, '');
+                
+                if (content) {
+                     items.push({ type: 'footnote', id, num, html: content });
+                }
             } else if (citationItems[id]) {
-                const num = id.replace(/^\D+/, '');
-                items.push({ type: 'citation', id, num, html: citationItems[id] });
+                content = citationItems[id];
+                label = 'ارجاع';
+                // Try to find the citation number in the text content
+                // It usually looks like "[1]" or "1." at the start
+                const match = content.match(/^\[(\d+)\]|^(\d+)\./);
+                if (match) {
+                    num = match[1] || match[2];
+                } else {
+                    // Fallback to ID if no number found in text
+                    num = id.replace(/^\D+/, '');
+                }
+                
+                if (content) {
+                     items.push({ type: 'citation', id, num, html: content });
+                }
             }
         });
         
         items.sort((a,b) => {
-            const numA = parseInt(a.num.replace(/\D/g, '')) || 0;
-            const numB = parseInt(b.num.replace(/\D/g, '')) || 0;
+            const numA = parseInt(a.num) || 0;
+            const numB = parseInt(b.num) || 0;
             return numA - numB;
         });
 
@@ -572,7 +598,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         items.forEach(item => {
             const wrap = document.createElement('div');
-            wrap.className = 'text-sm text-gray-800 border-b border-gray-100 last:border-0 pb-4 last:pb-0';
+            wrap.className = 'text-sm text-gray-800 border-b border-gray-100 last:border-0 pb-4 last:pb-0 mb-4 last:mb-0';
             const label = item.type === 'footnote' ? 'یادداشت' : 'ارجاع';
             wrap.innerHTML = `<div class="font-bold text-primary mb-1 text-xs uppercase tracking-tight">${label} ${item.num}</div><div class="prose prose-sm max-w-none text-gray-600 leading-relaxed">${item.html}</div>`;
             notesContent.appendChild(wrap);
