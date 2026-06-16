@@ -37,3 +37,10 @@ build/
 .coverage.*
 coverage.xml
 htmlcov/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
