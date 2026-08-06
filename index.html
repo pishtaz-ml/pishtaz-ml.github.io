@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>This site has moved</title>
+
+<!-- Don't index the redirect page itself; canonical points at the real destination -->
+<meta name="robots" content="noindex">
+<link rel="canonical" id="canonical" href="https://pishtaz.net/">
+
+<!-- No-JS fallback: after 8s go to the new root (JS below leaves sooner, with the full path) -->
+<meta http-equiv="refresh" content="8;url=https://pishtaz.net/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --asphalt:#15181d; --panel:#1d2129; --line:#2c323c;
+    --orange:#ff6a1f; --yellow:#ffc933;
+    --ink:#f2efe9; --muted:#98a1ab;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100vh;display:flex;flex-direction:column;
+    font-family:"IBM Plex Sans",system-ui,sans-serif;color:var(--ink);
+    background:
+      radial-gradient(1100px 520px at 85% -10%, rgba(255,106,31,.10), transparent 60%),
+      radial-gradient(900px 480px at 8% 112%, rgba(255,201,51,.07), transparent 60%),
+      var(--asphalt);
+    overflow-x:hidden;
+  }
+  /* faint asphalt grain */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,.04) 1px, transparent 1.4px);
+    background-size:22px 22px;
+  }
+  /* giant ghost word */
+  body::after{
+    content:"MOVED";position:fixed;right:-.04em;bottom:-.16em;z-index:0;
+    font-family:Anton,Impact,sans-serif;font-size:clamp(130px,26vw,360px);line-height:1;
+    color:rgba(255,255,255,.028);-webkit-text-stroke:1.5px rgba(255,255,255,.05);
+    pointer-events:none;user-select:none;
+    animation:drift 14s ease-in-out infinite alternate;
+  }
+  @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-1.5%)}}
+
+  /* hazard tape */
+  .tape{
+    position:fixed;left:0;right:0;height:14px;z-index:5;
+    background:repeating-linear-gradient(-45deg, var(--yellow) 0 18px, #171a1f 18px 36px);
+    box-shadow:0 0 24px rgba(0,0,0,.5);
+    animation:tape 16s linear infinite;
+  }
+  .tape-top{top:0}
+  .tape-bottom{bottom:0;animation-direction:reverse}
+  @keyframes tape{to{background-position:50.91px 0}}
+
+  main{position:relative;z-index:1;width:min(860px,100% - 48px);margin:auto;padding:72px 0}
+
+  .kicker{
+    font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);
+    display:flex;align-items:center;gap:10px;animation:rise .6s .05s both;
+  }
+  .kicker::before{
+    content:"";width:9px;height:9px;border-radius:50%;background:var(--orange);
+    box-shadow:0 0 12px var(--orange);animation:blink 1.6s ease-in-out infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+  h1{
+    font-family:Anton,Impact,sans-serif;font-weight:400;text-transform:uppercase;
+    font-size:clamp(58px,11vw,124px);line-height:.98;letter-spacing:.01em;
+    margin:18px 0 10px;animation:rise .6s .15s both;
+  }
+  h1 .moved{color:var(--orange);white-space:nowrap}
+  h1 .arrow{display:inline-block;color:var(--yellow);margin-left:.08em;animation:nudge 1.4s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(.12em)}}
+
+  .chevrons{display:flex;gap:6px;margin:6px 0 22px;animation:rise .6s .25s both}
+  .chevrons span{font-size:30px;line-height:1;color:var(--orange);animation:flow 1.2s infinite}
+  .chevrons span:nth-child(2){color:var(--yellow);animation-delay:.15s}
+  .chevrons span:nth-child(3){animation-delay:.3s}
+  @keyframes flow{0%,100%{opacity:.15;transform:translateX(0)}50%{opacity:1;transform:translateX(7px)}}
+
+  .lede{
+    font-size:clamp(16px,2.2vw,19px);line-height:1.65;color:var(--muted);max-width:56ch;
+    animation:rise .6s .35s both;
+  }
+  .lede strong{color:var(--ink)}
+  #count{
+    display:inline-block;min-width:1.1em;text-align:center;
+    font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--yellow);
+  }
+  #count.tick{animation:pop .45s ease}
+  @keyframes pop{0%{transform:scale(1.6);color:var(--orange)}100%{transform:scale(1)}}
+
+  .dest{
+    margin-top:30px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--orange);
+    padding:16px 18px;animation:rise .6s .45s both;
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .dest:hover{transform:translateY(-2px);border-color:var(--orange);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .dest-label{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  }
+  .dest-url{
+    font-family:"IBM Plex Mono",monospace;font-size:15px;font-weight:600;color:var(--ink);
+    text-decoration:none;word-break:break-all;flex:1;min-width:220px;
+    border-bottom:2px solid transparent;transition:border-color .15s ease,color .15s ease;
+  }
+  .dest-url:hover{color:var(--yellow);border-bottom-color:var(--yellow)}
+  .copy{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;cursor:pointer;background:var(--yellow);color:#15181d;border:0;
+    padding:9px 16px;transition:background .15s ease, transform .1s ease;
+  }
+  .copy:hover{background:var(--orange)}
+  .copy:active{transform:translateY(1px)}
+  .copy.done{background:#57d977}
+
+  .hint{
+    margin-top:16px;font-size:13.5px;color:var(--muted);
+    font-family:"IBM Plex Mono",monospace;animation:rise .6s .55s both;
+  }
+  .hint code{color:var(--yellow)}
+
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+
+<div class="tape tape-top" aria-hidden="true"></div>
+
+<main>
+  <p class="kicker">Notice — you're on the old address</p>
+
+  <h1>This site<br>has <span class="moved">moved<span class="arrow">→</span></span></h1>
+
+  <div class="chevrons" aria-hidden="true"><span>❯</span><span>❯</span><span>❯</span></div>
+
+  <p class="lede">
+    Every page now lives at a new address — including the exact page you asked for.
+    Sending you there in <strong><span id="count">3</span></strong> seconds.
+  </p>
+
+  <div class="dest">
+    <span class="dest-label">New location</span>
+    <a id="dest-link" class="dest-url" href="https://pishtaz.net/">…</a>
+    <button id="copy" class="copy" type="button">Copy</button>
+  </div>
+
+  <p class="hint">Worth updating your bookmarks. <span id="note" hidden></span></p>
+</main>
+
+<div class="tape tape-bottom" aria-hidden="true"></div>
+
+<script>
+(function () {
+  /* ================= CONFIG — edit these two lines ================= */
+  const NEW_BASE_URL = "https://pishtaz.net"; // new site base URL
+  const OLD_BASE_PATH = "";  // "" for user/org sites; "/repo-name" for project sites
+  /* ================================================================== */
+
+  const COUNTDOWN_SECONDS = 3;
+
+  const link = document.getElementById("dest-link");
+  const count = document.getElementById("count");
+  const copyBtn = document.getElementById("copy");
+  const note = document.getElementById("note");
+  const canonical = document.getElementById("canonical");
+
+  // old_base/anything?x=1#frag  →  new_base/anything?x=1#frag
+  function computeTarget() {
+    const prefix = OLD_BASE_PATH.replace(/\/+$/, "");
+    const here = window.location.pathname + window.location.search + window.location.hash;
+    let rest = here;
+
+    if (prefix) {
+      if (here === prefix) rest = "/";
+      else if (here.startsWith(prefix + "/")) rest = here.slice(prefix.length) || "/";
+      else if (here.startsWith(prefix + "?") || here.startsWith(prefix + "#"))
+        rest = "/" + here.slice(prefix.length);
+    }
+    if (!rest.startsWith("/")) rest = "/" + rest;
+    return NEW_BASE_URL.replace(/\/+$/, "") + rest;
+  }
+
+  const target = computeTarget();
+
+  // Loop guard: if the target is this exact URL, the config is wrong — don't redirect
+  let loop = false;
+  try { loop = new URL(target).href === window.location.href; } catch (e) { loop = true; }
+
+  link.href = target;
+  link.textContent = target;
+  if (!loop) canonical.href = target;
+
+  const stay = new URLSearchParams(window.location.search).has("stay");
+
+  copyBtn.addEventListener("click", function () {
+    const done = function () {
+      copyBtn.textContent = "Copied ✓";
+      copyBtn.classList.add("done");
+      setTimeout(function () {
+        copyBtn.textContent = "Copy";
+        copyBtn.classList.remove("done");
+      }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(target).then(done, done);
+    } else {
+      const r = document.createRange(); r.selectNode(link);
+      const sel = window.getSelection();
+      sel.removeAllRanges(); sel.addRange(r);
+      try { document.execCommand("copy"); } catch (e) {}
+      sel.removeAllRanges();
+      done();
+    }
+  });
+
+  if (loop) {
+    note.hidden = false;
+    note.innerHTML = "⚠ Target equals the current URL — check <code>NEW_BASE_URL</code> / <code>OLD_BASE_PATH</code>.";
+    count.textContent = "—";
+    return;
+  }
+  if (stay) {
+    note.hidden = false;
+    note.innerHTML = "Auto-redirect paused (<code>?stay</code>) — click the link above to go manually.";
+    count.textContent = "—";
+    return;
+  }
+
+  let remaining = COUNTDOWN_SECONDS;
+  count.textContent = remaining;
+  const timer = setInterval(function () {
+    remaining -= 1;
+    if (remaining <= 0) {
+      clearInterval(timer);
+      window.location.replace(target); // replace() keeps the Back button clean
+    } else {
+      count.textContent = remaining;
+      count.classList.remove("tick"); void count.offsetWidth; count.classList.add("tick");
+    }
+  }, 1000);
+})();
+</script>
+
+</body>
+</html>
